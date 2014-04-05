@@ -91,4 +91,6 @@ def nlp_similar():
 
     index = similarities.MatrixSimilarity(lsi[corpus]) # transform corpus to LSI space and index it
     sims = index[vec_lsi] # perform a similarity query against the corpus
-    return(Response(sims))
+    return Response(json.dumps({
+        'sims': sims
+    }), mimetype='application/json')
