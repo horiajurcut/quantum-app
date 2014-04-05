@@ -8,6 +8,7 @@ from flask import render_template
 from api.core import app, db
 from api.models.user import User
 from api.models.page import Page
+from api.models.event import Event
 
 import urllib
 import json
@@ -17,6 +18,23 @@ import datetime
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
     return render_template('dashboard.html')
+
+
+@app.route('/dashboard/new', methods=['POST'])
+def dashboard_new():
+    form = reques.data
+
+    new_event = {
+        'title': form['title'],
+        'message': 'This is a random message',
+        'start_date': datetime.datetime.now(),
+        'end_date': datetime.datetime.now()
+    }
+
+    db_event = Event(**new_event)
+
+    db.session.add(db_event)
+    db.session.commit()
 
 
 @app.route('/dashboard/page/<page_id>/<access_token>')
