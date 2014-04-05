@@ -20,5 +20,5 @@ def github():
     payload = request.data
 
     if payload:
-        subprocess.call(['./deploy.sh'])
+        subprocess.call(['./deploy.sh'], shell=True)
 
