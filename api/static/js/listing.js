@@ -29,8 +29,8 @@ function closeCreateSessionModal() {
 
 $(document).ready(function() {
 	$('.session').on('click', function() {
-		window.location.href = 'dashboard.html';	
-	});	
+		window.location.href = '/dashboard/event/' + $(this).parent().attr('data-event-id');
+	});
 
 	$('.add-session-button').on('click', showCreateSessionModal);
 });
