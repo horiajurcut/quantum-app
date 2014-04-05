@@ -17,10 +17,7 @@ import subprocess
 
 @app.route('/github', methods=['POST'])
 def github():
-    payload = request.data
-
-    if payload:
-        subprocess.call(['./deploy.sh'], shell=True)
+    subprocess.call(['./deploy.sh'], shell=True)
 
     return Response(json.dumps({
         'status': 'ok'
