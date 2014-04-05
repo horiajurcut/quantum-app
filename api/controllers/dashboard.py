@@ -17,7 +17,7 @@ import datetime
 
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
-    events = db.session.Query(Event).filter(
+    events = db.session.query(Event).filter(
         Event.page_id == page_id
     ).all()
 
