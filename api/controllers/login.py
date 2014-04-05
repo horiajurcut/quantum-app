@@ -15,7 +15,7 @@ import datetime
 
 @app.route('/')
 def login():
-    return render_template('login.html')
+    return render_template('dashboard.html')
 
 
 @app.route('/auth/<token>')
