@@ -4,12 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="/static/css/libs/base.css">
-        <link rel="stylesheet" href="/static/css/login.css">
+        <link rel="stylesheet" href="api/static/css/libs/base.css">
+        <link rel="stylesheet" href="api/static/css/login.css">
 
         <!-- JS -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="/static/js/libs/modernizr.js"></script>
+        <script src="api/static/js/libs/modernizr.js"></script>
 
         <title>Quantum :: Login</title>
     </head>
@@ -21,12 +21,54 @@
             </header>
 
             <section id="facebook-login">
-                <a href="/chooser"><img src="/static/images/facebook.png"></a>
+                <a href="#" id="facebook-button">
+                    LOGIN WITH FACEBOOK (opensans semi bold 18px)
+                </a>
             </section>
         </section>
 
         <footer>
             <p>Copyright &copy; 2014 Quantum</p>
         </footer>
-    </body>
+
+        <div id="fb-root"></div>
+        <script>
+            // Init function
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '795829153779723',
+                    status     : true,
+                    xfbml      : true
+                });
+            };
+
+            // Include Facebook SDK
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            $(document).ready(function() {
+
+                // Login with Facebook
+                $(document).on('click', '#facebook-button', function(){
+                    FB.login(function(response) {
+                        if (response.authResponse) {
+                            tokens = FB.getAuthResponse();
+                            location.href = '/auth/' + tokens['accessToken'];
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    },
+                    {
+                        scope: 'email,manage_pages,publish_actions,read_stream,read_insights'
+                    });
+                });
+            });
+
+        </script>
+     </body>
 </html>

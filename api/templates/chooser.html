@@ -4,12 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="/static/css/libs/base.css">
-        <link rel="stylesheet" href="/static/css/chooser.css">
+        <link rel="stylesheet" href="/api/static/css/libs/base.css">
+        <link rel="stylesheet" href="/api/static/css/chooser.css">
 
         <!-- JS -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="/static/js/libs/modernizr.js"></script>
+        <script src="/api/static/js/libs/modernizr.js"></script>
 
         <title>Quantum :: Login</title>
     </head>
@@ -18,39 +18,19 @@
         <section>
             <h3>Choose your page</h3>
             <ul id="chooser" class="clearfix">
+                {% for page in pages %}
                 <a href="#">
                     <li class="clearfix">
                         <div class="avatar left">
-                            <img src="http://placehold.it/65x65">
+                            <img width="65" height="65" src="https://graph.facebook.com/{{ page.id }}/picture?type=square">
                         </div>
                         <div>
-                            <span class="name">First Last</span>
+                            <span class="name">{{ page.name }}</span>
                             <span>Description</span>
                         </div>
                     </li>
                 </a>
-                <a href="#">
-                    <li class="clear">
-                        <div class="avatar left">
-                            <img src="http://placehold.it/65x65">
-                        </div>
-                        <div>
-                            <span class="name">First Last</span>
-                            <span>Description</span>
-                        </div>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="clear">
-                        <div class="avatar left">
-                            <img src="http://placehold.it/65x65">
-                        </div>
-                        <div>
-                            <span class="name">First Last</span>
-                            <span>Description</span>
-                        </div>
-                    </li>
-                </a>
+                {% endfor %}
             </ul>
         </section>
 
