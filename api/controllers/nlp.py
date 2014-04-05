@@ -13,7 +13,7 @@ from gensim import corpora, models, similarities
 import urllib
 import json
 import datetime
-
+import pprint
 
 @app.route('/nlp/sentiment')
 def nlp_sentiment():
@@ -85,4 +85,4 @@ def nlp_similar():
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    return Response(type(sims), mimetype='application/json')
+    return Response(pprint(sims), mimetype='application/html')
