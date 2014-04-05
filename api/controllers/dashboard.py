@@ -17,7 +17,7 @@ import datetime
 
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
-    return render_template('dashboard.html')
+    return render_template('new.html')
 
 
 @app.route('/dashboard/new', methods=['POST'])
