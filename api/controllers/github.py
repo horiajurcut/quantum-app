@@ -22,3 +22,7 @@ def github():
     if payload:
         subprocess.call(['./deploy.sh'], shell=True)
 
+    return Response(json.dumps({
+        'status': 'ok'
+    }), mimetype='application/json')
+
