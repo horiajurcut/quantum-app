@@ -1,0 +1,60 @@
+body {
+  width: auto;
+  background-color: #393e47;
+  font-size: 11px;
+}
+
+  section {
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+  }
+
+  #chooser {
+    list-style-type: none;
+    width: 400px;
+    margin: 20px auto 0px auto;
+    display: block;
+    background-color: white;
+    text-align: left;
+    color: grey;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+    #chooser a:link,
+    #chooser a:visited {
+      text-decoration: none;
+      color: #696763;
+    }
+
+    #chooser li {
+      margin: 10px 0px 5px 0px;
+    }
+
+    #chooser li:hover {
+      background-color: #fafafa;
+    }
+
+    #chooser li .avatar {
+      width: 65px;
+      height: 65px;
+      margin: 0px 5px 0px 5px;
+    }
+
+    #chooser li span {
+      display: block;
+    }
+
+      #chooser li span.name {
+        padding-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+  footer {
+    width: 200px;
+    margin: 10px auto 0px auto;
+    color: white;
+    text-align: center;
+  }

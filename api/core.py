@@ -11,4 +11,3 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:dordevama@localhost/quantum'
 
 db = SQLAlchemy(app)
-

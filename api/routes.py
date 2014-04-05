@@ -1,5 +1,6 @@
 from api.core import app
 
+from api.controllers.login import *
 from api.controllers.dashboard import *
 
 @app.errorhandler(404)

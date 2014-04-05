@@ -1,0 +1,22 @@
+body {
+  width: auto;
+  background-color: #393e47;
+  font-size: 11px;
+}
+
+  header {
+    width: 300px;
+    margin: 100px auto 0px auto;
+  }
+
+  #facebook-login {
+    width: 347px;
+    margin: 20px auto 0px auto;
+  }
+
+  footer {
+    width: 200px;
+    margin: 10px auto 0px auto;
+    color: white;
+    text-align: center;
+  }
