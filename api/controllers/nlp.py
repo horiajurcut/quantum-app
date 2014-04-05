@@ -53,20 +53,21 @@ def npl_rank_keywords():
 
 @app.route('/nlp/similar')
 def nlp_similar():
-    documents = [
-        "Human machine interface for lab abc computer applications",
-        "A survey of user opinion of computer system response time",
-        "The EPS user interface management system",
-        "System and human system engineering testing of EPS",
-        "Relation of user perceived response time to error measurement",
-        "The generation of random binary unordered trees",
-        "The intersection graph of paths in trees",
-        "Graph minors IV Widths of trees and well quasi ordering",
-        "Graph minors A survey"]
+    questions = { 
+        '1' : "Human machine interface for lab abc computer applications",
+        '2' : "A survey of user opinion of computer system response time",
+        '3' : "The EPS user interface management system",
+        '4' : "System and human system engineering testing of EPS",
+        '5' : "Relation of user perceived response time to error measurement",
+        '6' : "The generation of random binary unordered trees",
+        '7' : "The intersection graph of paths in trees",
+        '8' : "Graph minors IV Widths of trees and well quasi ordering",
+        '9': "Graph minors A survey"
+    }
 
     # remove common words and tokenize
     stoplist = set('for a of the and to in by from on with as a'.split())
-    texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
+    texts = [[word for word in question.lower().split() if word not in stoplist] for id, question in questions]
 
     # remove words that appear only once
     all_tokens = sum(texts, [])
