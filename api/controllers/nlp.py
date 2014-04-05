@@ -85,4 +85,4 @@ def nlp_similar():
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    return Response(pprint(sims), mimetype='application/html')
+    return Response(pprint.pprint(sims), mimetype='application/html')
