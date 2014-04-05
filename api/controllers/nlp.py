@@ -4,6 +4,7 @@ from flask import Response
 from flask import request
 from flask import redirect, url_for
 from flask import render_template
+from flask import jsonify
 
 from api.core import app, db
 from api.models.user import User
@@ -84,5 +85,7 @@ def nlp_similar():
 
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
-    pprint.pprint(sims)
-    # return Response('', mimetype='application/html')
+
+    return Response(json.dumps({
+        'accounts': jsonify(sims)
+    }), mimetype='application/json')
