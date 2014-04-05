@@ -53,7 +53,7 @@ def npl_rank_keywords():
 
 @app.route('/nlp/similar')
 def nlp_similar():
-   documents = [
+    documents = [
         "Human machine interface for lab abc computer applications",
         "A survey of user opinion of computer system response time",
         "The EPS user interface management system",
@@ -72,8 +72,7 @@ def nlp_similar():
     # remove words that appear only once
     all_tokens = sum(texts, [])
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-    texts = [[word for word in text if word not in tokens_once]
-            for text in texts]
+    texts = [[word for word in text if word not in tokens_once] for text in texts]
 
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
