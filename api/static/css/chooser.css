@@ -4,22 +4,21 @@ body {
   font-size: 11px;
 }
 
-  section {
-    text-align: center;
-    color: white;
-    padding-top: 20px;
+  header {
+    width: 300px;
+    margin: 200px auto 0px auto;
   }
 
   #chooser {
     list-style-type: none;
-    width: 400px;
+    width: 340px;
     margin: 20px auto 0px auto;
     display: block;
-    background-color: white;
+    background-color: #60646c;
     text-align: left;
     color: grey;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 5px 5px 0px 5px;
+    border-radius: 2px;
   }
 
     #chooser a:link,
@@ -29,17 +28,21 @@ body {
     }
 
     #chooser li {
-      margin: 10px 0px 5px 0px;
+      width: 330px;
+      height: 80px;
+      margin: 0px 0px 5px 0px;
+      background-color: #d6d9da;
     }
 
     #chooser li:hover {
-      background-color: #fafafa;
+      background-color: #bec2c4;
     }
 
     #chooser li .avatar {
       width: 65px;
       height: 65px;
-      margin: 0px 5px 0px 5px;
+      margin: 15px 0px 0px 15px;
+      border-radius: 2px;
     }
 
     #chooser li span {
@@ -47,9 +50,15 @@ body {
     }
 
       #chooser li span.name {
-        padding-top: 15px;
-        font-size: 16px;
-        font-weight: bold;
+        padding-top: 30px;
+        font-size: 21px;
+        font-family: "Open Sans";
+        color: #393f48;
+      }
+
+      #chooser li span.arrow {
+        float: right;
+        margin-right: 20px;
       }
 
   footer {

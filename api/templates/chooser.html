@@ -11,23 +11,29 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="/api/static/js/libs/modernizr.js"></script>
 
-        <title>Quantum :: Login</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+
+        <title>Quantum :: Choose your page</title>
     </head>
 
     <body>
         <section>
-            <h3>Choose your page</h3>
+            <header>
+                <a href="/"><img src="/api/static/images/logo.png"></a>
+            </header>
+
             <ul id="chooser" class="clearfix">
                 {% for page in pages %}
                 <a href="#">
                     <li class="clearfix">
                         <div class="avatar left">
-                            <img width="65" height="65" src="https://graph.facebook.com/{{ page.id }}/picture?type=square">
+                            <img width="65" height="65" src="https://graph.facebook.com/{{ page.id }}/picture?type=square" class="circular">
                         </div>
-                        <div>
-                            <span class="name">{{ page.name }}</span>
-                            <span>Description</span>
-                        </div>
+                        <span class="name">
+                            {{ page.name }}
+                            <span class="arrow"><img src="/api/static/images/arrow.png" width="9"></span>
+                        </span>
                     </li>
                 </a>
                 {% endfor %}
