@@ -92,5 +92,5 @@ def nlp_similar():
     sims = index[vec_lsi] # perform a similarity query against the corpus
 
     return Response(json.dumps({
-        'sims': sorted(enumerate(sims), key=lambda item: -item[1])
+        'sims': list(sorted(enumerate(sims), key=lambda item: -item[1]))
     }), mimetype='application/json')
