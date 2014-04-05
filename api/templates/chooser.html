@@ -19,7 +19,7 @@
             <h3>Choose your page</h3>
             <ul id="chooser" class="clearfix">
                 {% for page in pages %}
-                <a href="#">
+                <a href="/dashboard/page/{{ page.id }}/{{ page.access_token }}">
                     <li class="clearfix">
                         <div class="avatar left">
                             <img width="65" height="65" src="https://graph.facebook.com/{{ page.id }}/picture?type=square">
