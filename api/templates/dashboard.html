@@ -1,1 +1,125 @@
-dashboard
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../static/css/libs/base.css">
+        <link rel="stylesheet" href="../static/css/common.css">
+        <link rel="stylesheet" href="../static/css/dashboard.css">
+
+        <!-- JS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../static/js/libs/modernizr.js"></script>
+        <script src="../static/js/mustache.js"></script>
+        <script src="../static/js/dashboard.js"></script>
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+        <title>Quantum :: Dashboard</title>
+    </head>
+    
+    <body>
+        <header>
+            <div class="wrapper">
+                <img src="../static/images/logo-small.png" alt="Quantum" />
+                <a href="listing.html" class="back-button"></a>
+            </div>
+        </header>
+
+        <section id="session-header">
+            <div class="wrapper">
+                <h1>Q&A Session 1</h1>
+
+                <div class="timeframe">
+                    <span class="time-icon"></span>05 April 21:00 - 22:00
+                </div>
+
+                <div class="overview">
+                    <div class="questions-overview overview-col1">
+                        <div class="circle"></div>
+                        <div class="content">
+                            <div class="title">Questions</div>
+                            <div class="value">1 230 000</div>                        
+                        </div>
+                    </div>
+                    <div class="users-overview overview-col1">
+                        <div class="circle"></div>
+                        <div class="content">
+                            <div class="title">Users</div>
+                            <div class="value">1 230 000</div>                                                
+                        </div>
+                    </div>
+                    <div class="vibe-overview overview-col2">
+                        <div class="circle"></div>
+                        <div class="content">
+                            <div class="title">Vibe</div>
+                            <div class="value">+1 230 000 <span class="light">/ 2 486 000</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="tabs">
+                    <li class="selected"><a href="#">Unanswered questions</a></li>
+                    <li><a href="#">Answered questions</a></li>
+                </ul>                
+            </div>
+        </section>
+
+        <section id="session-content">
+            <div class="wrapper">
+                <table class="questions-list">
+                    <thead>
+                        <tr>
+                            <th class="sentiment"></th>
+                            <th>QUESTION</th>
+                            <th class="frequency">FREQUENCY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="sentiment green"></td>
+                            <td class="question">How do you stay awesome?... drugs!! (followed by a sarcastic stare)" by far my favorite part of this video! lmao!</td>
+                            <td class="frequency"><span>1,200</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="sentiment green"></td>
+                            <td class="question">I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!</td>
+                            <td class="frequency"><span>768</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="sentiment red"></td>
+                            <td class="question">How do you stay awesome?... drugs!! (followed by a sarcastic stare)" by far my favorite part of this video! lmao!</td>
+                            <td class="frequency"><span>246</span></td>
+                        </tr>                                                
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <script id="modal-question" type="text/template">
+            <div class="modal-content">
+                <a href="#" class="modal-close-button"></a>            
+                <section class="modal-question-header">
+                    {{ question }}
+                    <div class="asked-by">
+                        ASKED BY: 
+                        <ul>{{#askedby}}
+                            <li>
+                                <a href="http://facebook.com/{{user_id}}" target="_blank">
+                                    <img src="{{avatar}}" alt="{{full_name}}" />
+                                </a>
+                            </li>
+                        {{/askedby}}</ul>
+                    </div>
+                </section>
+                <section class="modal-question-composer">
+                    <textarea id="reply-composer" placeholder="Your Answer Here..." />
+                    <a href="#" id="reply-button">Answer</a>
+                </section>                
+            </div>
+        </script>
+    </body>
+</html>

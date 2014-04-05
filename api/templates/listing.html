@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../static/css/libs/base.css">
+        <link rel="stylesheet" href="../static/css/common.css">
+        <link rel="stylesheet" href="../static/css/jquery.datetimepicker.css">
+        <link rel="stylesheet" href="../static/css/listing.css">        
+
+        <!-- JS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../static/js/libs/modernizr.js"></script>
+        <script src="../static/js/mustache.js"></script>
+        <script src="../static/js/jquery.datetimepicker.js"></script>
+        <script src="../static/js/listing.js"></script>
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+        <title>Quantum :: Listing</title>
+    </head>
+    
+    <body>
+        <header>
+            <div class="wrapper">
+                <img src="../static/images/logo-small.png" alt="Quantum" />
+                <a href="#" class="add-session-button"></a>
+            </div>
+        </header>
+
+        <section id="content">
+            <div class="wrapper">
+                <h2>Your Q&A Sessions</h2>
+
+                <ul class="session-listing">
+                    <li>
+                        <span class="session">
+                            <span class="session-title">Q&A Session 1</span>
+                            <span class="timeframe">
+                                <span class="time-icon"></span>05 April 21:00 - 22:00
+                            </span>
+                            <a href="#" class="delete-session"></a>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="session">
+                            <span class="session-title">Q&A Session 2</span>
+                            <span class="timeframe">
+                                <span class="time-icon"></span>05 April 21:00 - 22:00
+                            </span>
+                            <a href="#" class="delete-session"></a>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="session">
+                            <span class="session-title">Q&A Session 3</span>
+                            <span class="timeframe">
+                                <span class="time-icon"></span>05 April 21:00 - 22:00
+                            </span>
+                            <a href="#" class="delete-session"></a>
+                        </span>
+                    </li>                
+                </ul>
+            </div>
+        </section>
+
+        <script id="modal-new-session" type="text/template">
+            <div class="modal-content">
+                <a href="#" class="modal-close-button"></a>  
+                <section class="modal-session-content">                
+                    <input type="text" id="session-title" placeholder="Add Title" />
+                    <div class="date-wrapper start">
+                        <span>Start Date</span>
+                        <input type="text" id="start-date" placeholder="Select Date" />
+                    </div>
+                    <div class="date-wrapper end">
+                        <span>End Date</span>
+                        <input type="text" id="end-date" placeholder="Select Date" />
+                    </div>
+                </section>
+                <section class="modal-session-footer">
+                    <a href="#" class="cancel-create-session">Cancel</a>
+                    <a href="#" class="submit-create-session">Create</a>
+                </section>
+            </div>
+        </script>        
+    </body>
+</html>

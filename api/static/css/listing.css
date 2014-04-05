@@ -1,0 +1,149 @@
+.add-session-button {
+	display: inline-block;
+	float: right;
+	width: 48px;
+	height: 48px;
+	background-color: #ec4d51;
+	margin-top: 21px;
+	background-image: url(../images/add-button.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+}
+
+.session-listing {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.session-listing li {
+	float: left;
+	width: 50%;	
+	margin: 10px 0;
+}
+
+.session-listing li:nth-child(2n) {
+	padding-left: 10px;
+}
+
+.session-listing li:nth-child(2n+1) {
+	padding-right: 10px;
+}
+
+.session-listing .session {
+	background-color: #fff;
+	display: block;
+	padding: 30px;
+	position: relative;
+	cursor: pointer;
+}
+
+.session-title {
+	display: block;
+	color: #9c9fa3;
+	font-weight: 300;
+	font-size: 32px;
+	margin-bottom: 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	line-height: 36px;	
+}
+
+.delete-session {
+	display: none;
+	position: absolute;
+	background-color: #d6d9da;
+	margin-top: 5px;
+	margin-right: 5px;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 17px 20px;
+	background-image: url(../images/recycle.png);
+}
+
+.delete-session:hover {
+	background-color: #ec4d51;
+}
+
+.session-listing .session:hover .delete-session {
+	display: block; 
+}
+
+.modal-session-content {
+	padding: 40px;
+	height: 270px;
+}
+
+.modal-session-footer a {
+	height: 60px;
+	display: block;
+	float: left;
+	width: 50%;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #9c9fa3;
+	line-height: 60px;
+}
+
+.modal-session-footer a.submit-create-session {
+	background-color: #ec4d51;
+}
+
+#session-title {
+	width: 100%;	
+	font-size: 36px;
+}
+
+.date-wrapper {
+	margin-top: 50px;
+	float: left;
+	width: 48%;
+}
+
+.date-wrapper input {
+	width: 210px;
+	font-size: 24px;
+}
+
+.date-wrapper.end {
+	float:right;
+	text-align: right;
+}
+
+.date-wrapper span {
+	text-transform: uppercase;
+	color: #9c9fa3;
+	font-size: 14px;
+	font-weight: 600;
+	margin-right: 10px;
+}
+
+.xdsoft_datetimepicker  .xdsoft_calendar td.xdsoft_default,
+.xdsoft_datetimepicker  .xdsoft_calendar td.xdsoft_current,
+.xdsoft_datetimepicker  .xdsoft_timepicker .xdsoft_time_box >div >div.xdsoft_current{
+	background: #ec4d51;
+	box-shadow: none;
+	color:#fff;
+	font-weight: 700;
+}
+
+.xdsoft_datetimepicker  .xdsoft_label > .xdsoft_select > div > .xdsoft_option:hover{
+	color: #fff;
+    background: #393f48;
+}
+
+.xdsoft_datetimepicker  .xdsoft_timepicker .xdsoft_time_box >div >div:hover{
+	color: #fff !important;
+    background: #393f48 !important;
+    box-shadow: none !important;
+}
