@@ -17,9 +17,9 @@ import subprocess
 
 @app.route('/github', methods=['POST'])
 def github():
-    subprocess.call(['/var/www/quantumapp.co/deploy.sh'], shell=True)
+    output = subprocess.call('/var/www/quantumapp.co/deploy.sh', shell=True)
 
     return Response(json.dumps({
-        'status': 'ok'
+        'status': output
     }), mimetype='application/json')
 
