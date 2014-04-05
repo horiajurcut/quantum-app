@@ -85,4 +85,4 @@ def nlp_similar():
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    return Response(json.dumps(sorted(enumerate(sims), key=lambda item: -item[1])), mimetype='application/json')
+    return Response(json.dumps(sims), mimetype='application/json')
