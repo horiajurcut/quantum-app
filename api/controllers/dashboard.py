@@ -17,6 +17,11 @@ import datetime
 
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
+    return render_template('listing.html')
+
+
+@app.route('/dashboard/event/<event_id>')
+def dashboard_page(page_id):
     return render_template('dashboard.html')
 
 

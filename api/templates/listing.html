@@ -4,27 +4,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../static/css/libs/base.css">
-        <link rel="stylesheet" href="../static/css/common.css">
-        <link rel="stylesheet" href="../static/css/jquery.datetimepicker.css">
-        <link rel="stylesheet" href="../static/css/listing.css">        
+        <link rel="stylesheet" href="/static/css/libs/base.css">
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/jquery.datetimepicker.css">
+        <link rel="stylesheet" href="/static/css/listing.css">
 
         <!-- JS -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="../static/js/libs/modernizr.js"></script>
-        <script src="../static/js/mustache.js"></script>
-        <script src="../static/js/jquery.datetimepicker.js"></script>
-        <script src="../static/js/listing.js"></script>
+        <script src="/static/js/libs/modernizr.js"></script>
+        <script src="/static/js/mustache.js"></script>
+        <script src="/static/js/jquery.datetimepicker.js"></script>
+        <script src="/static/js/listing.js"></script>
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
         <title>Quantum :: Listing</title>
     </head>
-    
+
     <body>
         <header>
             <div class="wrapper">
-                <img src="../static/images/logo-small.png" alt="Quantum" />
+                <img src="/static/images/logo-small.png" alt="Quantum" />
                 <a href="#" class="add-session-button"></a>
             </div>
         </header>
@@ -60,15 +60,16 @@
                             </span>
                             <a href="#" class="delete-session"></a>
                         </span>
-                    </li>                
+                    </li>
                 </ul>
             </div>
         </section>
 
+        {% raw %}
         <script id="modal-new-session" type="text/template">
             <div class="modal-content">
-                <a href="#" class="modal-close-button"></a>  
-                <section class="modal-session-content">                
+                <a href="#" class="modal-close-button"></a>
+                <section class="modal-session-content">
                     <input type="text" id="session-title" placeholder="Add Title" />
                     <div class="date-wrapper start">
                         <span>Start Date</span>
@@ -84,6 +85,7 @@
                     <a href="#" class="submit-create-session">Create</a>
                 </section>
             </div>
-        </script>        
+        </script>
+        {% endraw %}
     </body>
 </html>
