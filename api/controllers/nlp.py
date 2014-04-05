@@ -85,4 +85,5 @@ def nlp_similar():
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    return Response(sorted(enumerate(sims), key=lambda item: -item[1]))
+    print sorted(enumerate(sims), key=lambda item: -item[1])
+    # return Response(sorted(enumerate(sims), key=lambda item: -item[1]))
