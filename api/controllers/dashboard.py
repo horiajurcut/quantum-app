@@ -22,7 +22,7 @@ def dashboard_page(page_id):
     ).first()
 
     events = db.session.query(Event).filter(
-        Event.page_id == page_id.id
+        Event.page_id == page.id
     ).all()
 
     return render_template('listing.html', events=events)
