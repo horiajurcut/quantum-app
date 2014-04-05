@@ -15,9 +15,9 @@ import datetime
 import subprocess
 
 
-@app.route('/github')
+@app.route('/github', methods=['POST'])
 def github():
-    payload = request.data['payload']
+    payload = request.data
 
     if payload:
         subprocess.call(['/var/www/quantumapp.co/deploy.sh'])
