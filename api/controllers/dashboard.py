@@ -21,7 +21,7 @@ def dashboard_page(page_id):
 
 
 @app.route('/dashboard/event/<event_id>')
-def dashboard_page(page_id):
+def dashboard_event(event_id):
     return render_template('dashboard.html')
 
 
