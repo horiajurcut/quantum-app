@@ -67,7 +67,7 @@ def nlp_similar():
 
     # remove common words and tokenize
     stoplist = set('for a of the and to in by from on with as a'.split())
-    texts = [[word for word in questions.lower().split() if word not in stoplist] for document in questions]
+    texts = [[word for word in question.lower().split() if word not in stoplist] for id, question in questions]
 
     # remove words that appear only once
     all_tokens = sum(texts, [])
