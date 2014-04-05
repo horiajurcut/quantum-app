@@ -17,7 +17,11 @@ import datetime
 
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
-    return render_template('listing.html')
+    events = db.session.Query(Event).filter(
+        Event.page_id == page_id
+    ).all()
+
+    return render_template('listing.html', events=events)
 
 
 @app.route('/dashboard/event/<event_id>')

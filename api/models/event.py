@@ -5,6 +5,7 @@ class Event(db.Model):
     __tablename__ = 'events'
 
     id = db.Column(db.Integer, primary_key=True)
+    page_id = db.Column(db.Integer)
     title = db.Column(db.String(255))
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
