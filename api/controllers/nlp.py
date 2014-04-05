@@ -54,6 +54,7 @@ def npl_rank_keywords():
 @app.route('/nlp/similar')
 def nlp_similar():
     documents = [
+        "This is not good at all"
         "Human machine interface for lab abc computer applications",
         "A survey of user opinion of computer system response time",
         "The EPS user interface management system",
