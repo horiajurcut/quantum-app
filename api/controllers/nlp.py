@@ -66,7 +66,7 @@ def nlp_similar():
         "Graph minors A survey"]
 
     # remove common words and tokenize
-    stoplist = set('for a of the and to in by from on with as a '.split())
+    stoplist = set('for a of the and to in by from on with as a'.split())
     texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 
     # Create dictionary
