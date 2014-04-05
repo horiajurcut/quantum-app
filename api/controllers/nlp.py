@@ -55,7 +55,7 @@ def npl_rank_keywords():
 def nlp_similar():
     documents = [
         "This is not good at all",
-        # "Human machine interface for lab abc computer applications",
+        "Human machine interface for lab abc computer applications",
         # "A survey of user opinion of computer system response time",
         # "The EPS user interface management system",
         # "System and human system engineering testing of EPS",
