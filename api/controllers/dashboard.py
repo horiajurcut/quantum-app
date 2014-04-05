@@ -36,6 +36,10 @@ def dashboard_new():
     db.session.add(db_event)
     db.session.commit()
 
+    return Response(json.dumps({
+        'status': 'ok'
+    }), mimetype='application/json')
+
 
 @app.route('/dashboard/page/<page_id>/<access_token>')
 def dashboard_page_token(page_id, access_token):
