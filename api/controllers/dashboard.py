@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import render_template
 
-from api.core import app
+from api.core import app, db
+from api.models.user import User
 
 @app.route('/')
 def hello():
-    """Return a friendly HTTP greeting."""
+    users = db.session.query(User).all()
+
     return render_template('index.html', name='Horia')
