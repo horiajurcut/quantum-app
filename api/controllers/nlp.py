@@ -65,14 +65,8 @@ def nlp_similar():
         "Graph minors A survey"]
 
     # remove common words and tokenize
-    stoplist = set('for a of the and to in'.split())
-    texts = [[word for word in document.lower().split() if word not in stoplist]
-            for document in documents]
-
-    # remove words that appear only once
-    all_tokens = sum(texts, [])
-    tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-    texts = [[word for word in text if word not in tokens_once] for text in texts]
+    stoplist = set('for a of the and to in by from on with as a '.split())
+    texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
@@ -81,16 +75,14 @@ def nlp_similar():
     corpus = [dictionary.doc2bow(text) for text in texts]
 
     # Define LSI space
-    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
+    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=10)
 
     # Get similarity of teh doc vs documents
     doc = "Human computer interaction"
-    vec_bow = dictionary.doc2bow(doc.lower().split())
-    vec_lsi = lsi[vec_bow] # convert the query to LSI space
+    vector = dictionary.doc2bow(doc.lower().split())
+    vector_lsi = lsi[vector]
 
-    index = similarities.MatrixSimilarity(lsi[corpus]) # transform corpus to LSI space and index it
-    sims = index[vec_lsi] # perform a similarity query against the corpus
+    index = similarities.MatrixSimilarity(lsi[corpus])
+    sims = index[vector_lsi]
 
-    return Response(json.dumps({
-        'sims': list(enumerate(sims))
-    }), mimetype='application/json')
+    return Response(sorted(enumerate(sims), key=lambda item: -item[1]))
