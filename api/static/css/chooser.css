@@ -11,7 +11,7 @@ body {
 
   #chooser {
     list-style-type: none;
-    width: 340px;
+    width: 410px;
     margin: 20px auto 0px auto;
     display: block;
     background-color: #60646c;
@@ -19,6 +19,7 @@ body {
     color: grey;
     padding: 5px 5px 0px 5px;
     border-radius: 2px;
+    margin-bottom: 50px;
   }
 
     #chooser a:link,
@@ -28,7 +29,8 @@ body {
     }
 
     #chooser li {
-      width: 330px;
+      min-width: 400px;
+      width: auto;
       height: 80px;
       margin: 0px 0px 5px 0px;
       background-color: #d6d9da;
