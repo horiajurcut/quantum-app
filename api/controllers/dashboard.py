@@ -25,7 +25,7 @@ def dashboard_page(page_id):
         Event.page_id == page.id
     ).all()
 
-    return render_template('listing.html', events=events)
+    return render_template('listing.html', events=events, page_id=page_id)
 
 
 @app.route('/dashboard/event/<event_id>')
@@ -37,8 +37,10 @@ def dashboard_event(event_id):
 def dashboard_new():
     form = request.form
 
+    page_id = form['session-page']
+
     new_event = {
-        'title': form['title'],
+        'title': form['session-title'],
         'message': 'This is a random message',
         'start_date': datetime.datetime.now(),
         'end_date': datetime.datetime.now()
@@ -49,9 +51,7 @@ def dashboard_new():
     db.session.add(db_event)
     db.session.commit()
 
-    return Response(json.dumps({
-        'status': 'ok'
-    }), mimetype='application/json')
+    return redirect('/dashboard/page/%s' % page_id)
 
 
 @app.route('/dashboard/page/<page_id>/<access_token>')

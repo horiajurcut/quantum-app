@@ -51,24 +51,27 @@
 
         {% raw %}
         <script id="modal-new-session" type="text/template">
-            <div class="modal-content">
-                <a href="#" class="modal-close-button"></a>
-                <section class="modal-session-content">
-                    <input type="text" id="session-title" placeholder="Add Title" />
-                    <div class="date-wrapper start">
-                        <span>Start Date</span>
-                        <input type="text" id="start-date" placeholder="Select Date" />
-                    </div>
-                    <div class="date-wrapper end">
-                        <span>End Date</span>
-                        <input type="text" id="end-date" placeholder="Select Date" />
-                    </div>
-                </section>
-                <section class="modal-session-footer">
-                    <a href="#" class="cancel-create-session">Cancel</a>
-                    <a href="#" class="submit-create-session">Create</a>
-                </section>
-            </div>
+            <form name="new-event" action="/dashboard/new" method="POST">
+                <input type="hidden" id="session-page" value="{{ page_id }}" />
+                <div class="modal-content">
+                    <a href="#" class="modal-close-button"></a>
+                    <section class="modal-session-content">
+                        <input type="text" id="session-title" placeholder="Add Title" />
+                        <div class="date-wrapper start">
+                            <span>Start Date</span>
+                            <input type="text" id="start-date" placeholder="Select Date" />
+                        </div>
+                        <div class="date-wrapper end">
+                            <span>End Date</span>
+                            <input type="text" id="end-date" placeholder="Select Date" />
+                        </div>
+                    </section>
+                    <section class="modal-session-footer">
+                        <a href="#" class="cancel-create-session">Cancel</a>
+                        <a href="#" class="submit-create-session">Create</a>
+                    </section>
+                </div>
+            </form>
         </script>
         {% endraw %}
     </body>
