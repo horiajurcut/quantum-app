@@ -1,0 +1,20 @@
+body {
+  width: auto;
+  background-color: #393e47;
+  font-size: 11px;
+}
+
+  #chooser {
+    list-style-type: none;
+    width: 400px;
+    margin: 20px auto 0px auto;
+    display: block;
+    background-color: white;
+  }
+
+  footer {
+    width: 200px;
+    margin: 10px auto 0px auto;
+    color: white;
+    text-align: center;
+  }
