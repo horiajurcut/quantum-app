@@ -20,5 +20,5 @@ def github():
     payload = request.data['payload']
 
     if payload:
-        subprocess.call('./deploy.sh')
+        subprocess.call(['/var/www/quantumapp.co/deploy.sh'])
 
