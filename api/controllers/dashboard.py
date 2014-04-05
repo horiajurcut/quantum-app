@@ -22,7 +22,7 @@ def dashboard_page(page_id):
 
 @app.route('/dashboard/new', methods=['POST'])
 def dashboard_new():
-    form = request.data
+    form = request.form
 
     new_event = {
         'title': form['title'],
