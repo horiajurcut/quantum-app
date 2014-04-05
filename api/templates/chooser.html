@@ -11,44 +11,33 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="../static/js/libs/modernizr.js"></script>
 
-        <title>Quantum :: Login</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+
+        <title>Quantum :: Choose your page</title>
     </head>
 
     <body>
         <section>
-            <ul id="chooser">
-                <li class="clear">
-                    <div class="avatar left">
-                        <img src="http://placehold.it/65x65">
-                    </div>
-                    <div>
-                        <span class="name">First Last</span>
-                        <span>Description</span>
-                    </div>
-                </li>
-                <li class="clear">
-                    <div class="avatar left">
-                        <img src="http://placehold.it/65x65">
-                    </div>
-                    <div>
-                        <span class="name">First Last</span>
-                        <span>Description</span>
-                    </div>
-                </li>
-                <li class="clear">
-                    <div class="avatar left">
-                        <img src="http://placehold.it/65x65">
-                    </div>
-                    <div>
-                        <span class="name">First Last</span>
-                        <span>Description</span>
-                    </div>
-                </li>
+            <header>
+                <a href="/"><img src="/static/images/logo.png"></a>
+            </header>
+
+            <ul id="chooser" class="clearfix">
+                {% for page in pages %}
+                <a href="/dashboard/page/{{ page.id }}/{{ page.access_token }}">
+                    <li class="clearfix">
+                        <div class="avatar left">
+                            <img width="65" height="65" src="https://graph.facebook.com/{{ page.id }}/picture?type=square" class="circular">
+                        </div>
+                        <span class="name">
+                            {{ page.name }}
+                            <span class="arrow"><img src="/static/images/arrow.png" width="9"></span>
+                        </span>
+                    </li>
+                </a>
+                {% endfor %}
             </ul>
         </section>
-
-        <footer>
-            <p>Copyright &copy; 2014 Quantum</p>
-        </footer>
     </body>
 </html>

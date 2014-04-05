@@ -8,3 +8,5 @@ MySQL-python
 Flask
 SQLAlchemy
 Flask-SQLAlchemy
+facebook
+gensim

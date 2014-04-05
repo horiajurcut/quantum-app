@@ -10,4 +10,6 @@ if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Go
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:dordevama@localhost/quantum'
 
+app.config['SECRET_KEY'] = 'YEQYUIy^#*@^*&@%^&HDSDG'
+
 db = SQLAlchemy(app)

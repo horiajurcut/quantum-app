@@ -4,13 +4,64 @@ body {
   font-size: 11px;
 }
 
+  header {
+    width: 300px;
+    margin: 200px auto 0px auto;
+  }
+
   #chooser {
     list-style-type: none;
-    width: 400px;
+    width: 410px;
     margin: 20px auto 0px auto;
     display: block;
-    background-color: white;
+    background-color: #60646c;
+    text-align: left;
+    color: grey;
+    padding: 5px 5px 0px 5px;
+    border-radius: 2px;
+    margin-bottom: 50px;
   }
+
+    #chooser a:link,
+    #chooser a:visited {
+      text-decoration: none;
+      color: #696763;
+    }
+
+    #chooser li {
+      min-width: 400px;
+      width: auto;
+      height: 80px;
+      margin: 0px 0px 5px 0px;
+      background-color: #d6d9da;
+    }
+
+    #chooser li:hover {
+      background-color: #bec2c4;
+    }
+
+    #chooser li .avatar {
+      width: 65px;
+      height: 65px;
+      margin: 15px 0px 0px 15px;
+      border-radius: 2px;
+    }
+
+    #chooser li span {
+      display: block;
+    }
+
+      #chooser li span.name {
+        padding-top: 30px;
+        font-size: 21px;
+        font-family: "Open Sans";
+        color: #393f48;
+      }
+
+      #chooser li span.arrow {
+        float: right;
+        margin-right: 20px;
+      }
 
   footer {
     width: 200px;
