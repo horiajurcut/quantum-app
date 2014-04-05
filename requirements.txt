@@ -9,3 +9,5 @@ MySQL-python
 Flask
 SQLAlchemy
 Flask-SQLAlchemy
+facebook
+nltk
