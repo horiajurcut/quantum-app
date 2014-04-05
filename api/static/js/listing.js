@@ -13,6 +13,9 @@ function showCreateSessionModal() {
 	$modal.html(Mustache.to_html(template, null));
 	$('.modal-close-button').on('click', closeCreateSessionModal);
 	$('.cancel-create-session').on('click', closeCreateSessionModal);
+	$('.submit-create-session').on('click', function() {
+		$('.new-event').submit();
+	});
 	$('.date-wrapper input').datetimepicker();
 
 	return false;
