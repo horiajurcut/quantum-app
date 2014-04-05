@@ -23,6 +23,7 @@ body, form, fieldset, legend, input, select, textarea, button {
 html {
   font-size: 100%; }
 
+/* Custom */
 .clearfix:before,
 .clearfix:after {
   content:"";
@@ -34,6 +35,27 @@ html {
 .clearfix {
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
+
+/* Notifications */
+.notification {
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 3;
+  font-size: 18px;
+  color: white;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 5px black;
+  -moz-box-shadow:    0 0 5px black;
+  box-shadow:         0 0 5px black;
+}
+
+  .notification.error {
+    background-color: #E6706A;
+  }
 
 /* ==========================================================================
 /* 1.0 - Document Setup (typography, links, paragraph, etc)
