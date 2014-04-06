@@ -5,6 +5,8 @@ from api.controllers.dashboard import *
 from api.controllers.nlp import *
 from api.controllers.github import *
 
+import traceback
+
 @app.errorhandler(404)
 def page_not_found(e):
     """Return a custom 404 error."""
@@ -14,4 +16,5 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     """Return a custom 500 error."""
-    return 'Sorry, unexpected error: {}'.format(e), 500
+
+    return traceback.format_exc() + e, 500
