@@ -72,13 +72,21 @@ def dashboard_reply(group_id):
         Group.id == group_id
     ).first()
 
+    event = db.session.query(Event).filter(
+        Event.id == group.event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
     questions = db.session.query(Question).filter(
         Question.group_id == group.id
     ).all()
 
     for q in questions:
         params = {
-            'access_token':       session['PAGE_TOKEN'],
+            'access_token':       page.token,
             'message':            data['message'],
             'format':             'json',
             'suppress_http_code': 1,
