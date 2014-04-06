@@ -56,11 +56,9 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
-    raise Exception(texts)
-
-
     # remove words that appear only once
     all_tokens = sum(texts, [])
+    raise Exception(all_tokens)
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
     texts = [[word for word in text if word not in tokens_once] for text in texts]
 
