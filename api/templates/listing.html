@@ -40,11 +40,11 @@
                             <span class="session-title">{{ event.title }}</span>
                             {% if event.status != 0 %}
                                 <span class="timeframe text-green">
-                                    <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
+                                    <span class="time-icon-green"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
                                 </span>
                             {% else %}
                                 <span class="timeframe text-grey">
-                                    <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
+                                    <span class="time-icon-grey"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
                                 </span>
                             {% endif %}
                             <a href="/dashboard/event/{{ event.id }}/delete" class="delete-session"></a>
