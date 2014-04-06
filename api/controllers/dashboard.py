@@ -64,7 +64,7 @@ def dashboard_details(group_id):
     }), mimetype='application/json')
 
 
-@app.route('/dashboard/<group_id>/reply')
+@app.route('/dashboard/<group_id>/reply', methods=['POST'])
 def dashboard_reply(group_id):
     data = request.form
 

@@ -6,6 +6,11 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
+	$('html, body').css({
+	    'overflow': 'hidden',
+	    'height': '100%'
+	});
+
 	$modalBackground.on('click', closeQuestionsModal);
 
 	var groupId = $(this).attr('data-group-id');
@@ -18,8 +23,27 @@ function showQuestionsModal() {
 
         	data.groupId = groupId;
 
+        	console.log(groupId);
+
 			$modal.html(Mustache.to_html(template, data));
 			$('.modal-close-button').on('click', closeQuestionsModal);
+
+			$('#reply-button').on('click', function(){
+				var groupId = $(this).attr('data-group-id');
+				console.log('a');
+				$.ajax({
+			        url: "/dashboard/" + groupId + "/reply",
+			        type: "POST",
+			        data: {
+			        	message: $('#reply-composer').val()	
+			        },
+			        success: function(data){
+						closeQuestionsModal();
+			        },
+				    dataType: "json",
+			    	timeout: 2000
+		   		});
+			});
     	},
 	    dataType: "json",
     	timeout: 2000
@@ -33,6 +57,11 @@ function closeQuestionsModal() {
 	var $modal = $('.modal');
 	$modal.animate({ marginTop: '0', top: '100%' }, function() { $modal.remove() });
 	$modalBackground.animate({ opacity: 0 }, function() { $modalBackground.remove() });
+
+	$('html, body').css({
+	    'overflow': 'auto',
+	    'height': 'auto'
+	});
 
 	return false;
 }
@@ -91,21 +120,4 @@ function polling() {
 $(document).ready(function() {
 	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
-
-	$('#reply-button').on('click', function(){
-		var groupId = $(this).attr('data-group-id');
-
-		$.ajax({
-	        url: "/dashboard/" + groupId + "/reply",
-	        type: "POST",
-	        data: {
-	        	message: $('#reply-composer').val()	
-	        },
-	        success: function(data){
-				closeQuestionsModal();
-	        },
-		    dataType: "json",
-	    	timeout: 2000
-	    });
-	});
-});#
+});
