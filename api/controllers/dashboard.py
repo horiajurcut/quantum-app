@@ -66,10 +66,10 @@ def dashboard_new():
     }
 
     if form['session-start-date']:
-        new_event['start_date'] = datetime.datetime.strptime(form['session-start-date'], '%Y//%m//%d %H:%M:%S')
+        new_event['start_date'] = datetime.datetime.strptime(form['session-start-date'], '%Y//%m//%d %H:%M')
 
     if form['session-end-date']:
-        new_event['end_date'] = datetime.datetime.strptime(form['session-end-date'], '%Y//%m//%d %H:%M:%S')
+        new_event['end_date'] = datetime.datetime.strptime(form['session-end-date'], '%Y//%m//%d %H:%M')
 
     db_event = Event(**new_event)
 
