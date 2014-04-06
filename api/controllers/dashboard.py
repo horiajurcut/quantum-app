@@ -49,7 +49,7 @@ def dashboard_event(event_id):
 
 
 @app.route('/dashboard/<group_id>/details')
-def dashboard_reply(group_id):
+def dashboard_details(group_id):
     group = db.session.query(Group).filter(
         Group.id == group_id
     ).first()
@@ -61,6 +61,37 @@ def dashboard_reply(group_id):
     return Response(json.dumps({
         'users': [i.profile for i in users],
         'question': group.question
+    }), mimetype='application/json')
+
+
+@app.route('/dashboard/<group_id>/reply')
+def dashboard_reply(group_id):
+    data = request.form
+
+    group = db.session.query(Group).filter(
+        Group.id == group_id
+    ).first()
+
+    questions = db.session.query(Question).filter(
+        Question.group_id == group.id
+    ).all()
+
+    for q in questions:
+        params = {
+            'access_token':       session['PAGE_TOKEN'],
+            'message':            data['message'],
+            'format':             'json',
+            'suppress_http_code': 1,
+            'method':             'post'
+        }
+        params = urllib.urlencode(params)
+
+        data = json.loads(
+            urllib.urlopen('https://graph.facebook.com/' + q.fb_id + '/comments?%s' % params).read()
+        )
+
+    return Response(json.dumps({
+        'status': 'ok'
     }), mimetype='application/json')
 
 
@@ -289,6 +320,8 @@ def dashboard_page_token(page_id, access_token):
         db.session.add(db_page)
     else:
         db_page.token = access_token
+
+    session['PAGE_TOKEN'] = access_token
 
     db.session.commit()
 
