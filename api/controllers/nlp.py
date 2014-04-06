@@ -78,7 +78,7 @@ def match_similar(input, questions):
     index = similarities.MatrixSimilarity(lsi[corpus])
     return index[vector_lsi]
 
-def match_group(input, groups):
+def match_group(input, groups, min_threshold):
 
     group_questions = []
     for key, group in groups.items()
@@ -86,28 +86,26 @@ def match_group(input, groups):
 
     groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
-    group_id, similarity = groups[0]
-    return groups[groups_id]
+    for group_id, similarity in groups
+        if similarity > min_threshold
+            return groups[groups_id]
+
+    # Create new group
+    print('New Group created');
     
 
 @app.route('/nlp/similar')
 def nlp_similar():
+    min_threshold = 0.4;
+
     groups = {
         '1': {
             'id': 1,
             'content': 'Will the show continue?',
-            'low': 1,
-            'low_value': 0.9,
-            'high': 2,
-            'high_value': 9.1
         },
         '2': {
             'id': 2,
             'content': 'Do you like TV?',
-            'low':3,
-            'low_value': 0.6,
-            'high': 4,
-            'high_value': 7.7
         }
     }
 
@@ -169,6 +167,6 @@ def nlp_similar():
     }
 
     input = "Human computer interaction"
-    match_group(input, groups)
+    match_group(input, groups, min_threshold)
 
     return Response(json.dumps(sims), mimetype='application/json')
