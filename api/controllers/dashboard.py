@@ -186,7 +186,10 @@ def dashboard_polling(event_id):
         'questionsNumber': questions,
         'usersOverview': users,
         'answeredQuestions': [i.serialize for i in aGroups],
-        'unansweredQuestions': [i.serialize for i in uGroups]
+        'unansweredQuestions': [i.serialize for i in uGroups],
+        'totalPositive': 0,
+        'totalNegative': 0,
+        'totalNeutral': 0
     }), mimetype='application/json')
 
 
