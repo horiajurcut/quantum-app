@@ -263,10 +263,12 @@ def dashboard_publish(event_id):
         Page.id == event.page_id
     ).first()
 
+    msg = 'I will hit the start of my new Q&A session, %s. Join now and ask me all you can think of. Shoot!' % event.title
+
     params = {
         'access_token':       page.token,
         'to':                 page.page_id,
-        'message':            'I will hit the start of my new Q&A session. Join now and ask me all you can think of. Shoot!',
+        'message':            msg,
         'format':             'json',
         'suppress_http_code': 1,
         'method':             'post'
