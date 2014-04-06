@@ -74,6 +74,9 @@ def dashboard_publish(event_id):
         urllib.urlopen('https://graph.facebook.com/' + page.page_id + '/feed?%s' % params).read()
     )
 
+    event.fb_post_id = data['id']
+    db.session.commit()
+
     return redirect('/dashboard/page/%s' % page.page_id)
 
 
