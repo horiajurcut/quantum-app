@@ -60,7 +60,8 @@ def dashboard_details(group_id):
 
     return Response(json.dumps({
         'users': [i.profile for i in users],
-        'question': group.question
+        'question': group.question,
+        'answer': group.answer
     }), mimetype='application/json')
 
 
@@ -72,13 +73,21 @@ def dashboard_reply(group_id):
         Group.id == group_id
     ).first()
 
+    event = db.session.query(Event).filter(
+        Event.id == group.event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
     questions = db.session.query(Question).filter(
         Question.group_id == group.id
     ).all()
 
     for q in questions:
         params = {
-            'access_token':       session['PAGE_TOKEN'],
+            'access_token':       page.token,
             'message':            data['message'],
             'format':             'json',
             'suppress_http_code': 1,
@@ -86,9 +95,13 @@ def dashboard_reply(group_id):
         }
         params = urllib.urlencode(params)
 
-        data = json.loads(
+        json.loads(
             urllib.urlopen('https://graph.facebook.com/' + q.fb_id + '/comments?%s' % params).read()
         )
+
+    group.status = 1
+    group.answer = data['message']
+    db.session.commit()
 
     return Response(json.dumps({
         'status': 'ok'
@@ -174,6 +187,21 @@ def dashboard_retrieve(event_id):
             db.session.add(q)
             db.session.commit()
 
+            # Reply to Facebook
+            if g.answer is not None:
+                params = {
+                    'access_token':       page.token,
+                    'message':            g.answer,
+                    'format':             'json',
+                    'suppress_http_code': 1,
+                    'method':             'post'
+                }
+                params = urllib.urlencode(params)
+
+                json.loads(
+                    urllib.urlopen('https://graph.facebook.com/' + str(new_question['fb_id']) + '/comments?%s' % params).read()
+                )
+
     return Response(json.dumps({
         'status': questions
     }), mimetype='application/json')
@@ -250,10 +278,12 @@ def dashboard_publish(event_id):
         Page.id == event.page_id
     ).first()
 
+    msg = 'I will hit the start of my new Q&A session, %s. Join now and ask me all you can think of. Shoot!' % event.title
+
     params = {
         'access_token':       page.token,
         'to':                 page.page_id,
-        'message':            'This is an awesome post. Deal with it!',
+        'message':            msg,
         'format':             'json',
         'suppress_http_code': 1,
         'method':             'post'
@@ -261,7 +291,7 @@ def dashboard_publish(event_id):
     params = urllib.urlencode(params)
 
     data = json.loads(
-        urllib.urlopen('https://graph.facebook.com/' + page.page_id + '/feed?%s' % params).read()
+        urllib.urlopen('https://graph.facebook.com/' + str(page.page_id) + '/feed?%s' % params).read()
     )
 
     if 'id' in data:
@@ -269,7 +299,7 @@ def dashboard_publish(event_id):
         event.status = 1
         db.session.commit()
 
-    return redirect('/dashboard/page/%s' % page.page_id)
+    return redirect('/dashboard/event/%s' % event.id)
 
 
 @app.route('/dashboard/new', methods=['POST'])
