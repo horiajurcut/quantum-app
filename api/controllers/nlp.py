@@ -161,7 +161,7 @@ def nlp_similar():
         '9': {
             'id': 6,
             'question': "Graph minors A survey",
-            'similarity': 3.1
+            'similarity': 3.1,
             'group_id': 1
         }
     }
