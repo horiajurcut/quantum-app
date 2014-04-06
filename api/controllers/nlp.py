@@ -53,7 +53,7 @@ def npl_rank_keywords():
 
 def match_similar(inputs, questions):
     # remove common words and tokenize
-    stoplist = set('for a of the and to in'.split())
+    stoplist = set('for a of the and to in what do'.split())
     texts = [[word for word in question.lower().replace('?', '').split() if word not in stoplist] for question in questions]
 
     # Create dictionary
