@@ -102,7 +102,7 @@
                 </section>
                 <section class="modal-question-composer">
                     <textarea id="reply-composer" placeholder="Your Answer Here..." {{#answer}}disabled{{/answer}}>{{ answer }}</textarea>
-                    <a href="#" id="reply-button" data-group-id="{{ groupId }}">Answer</a>
+                    <a href="#" id="reply-button" data-group-id="{{ groupId }}" {{#answer}}style="display: none;"{{/answer}}>Answer</a>
                 </section>
             </div>
         </script>
