@@ -6,7 +6,7 @@ class Question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     fb_id = db.Column(db.String(100), unique=True)
-    from = db.Column(db.String(100), nullable=True)
+    user = db.Column(db.String(100), nullable=True)
     event_id = db.Column(db.Integer)
     question = db.Column(db.String(2000))
     group_id = db.Column(db.Integer, nullable=True)
