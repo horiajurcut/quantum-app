@@ -11,6 +11,7 @@ class Event(db.Model):
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
     message = db.Column(db.String(1000))
+    status = db.Column(db.Integer)
 
     def __init__(self, *args, **kwargs):
         for key in kwargs:
