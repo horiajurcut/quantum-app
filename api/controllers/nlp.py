@@ -80,7 +80,7 @@ def match_similar(input, questions):
 
 def match_group(input, groups, min_threshold):
 
-    group_questions = []
+    group_questions = [];
     for key, group in groups.items():
         group_questions.append(group.content)
 
