@@ -16,6 +16,8 @@ function showQuestionsModal() {
         success: function(data) {
         	var template = $('#modal-question').html();
 
+        	data.groupId = groupId;
+
 			$modal.html(Mustache.to_html(template, data));
 			$('.modal-close-button').on('click', closeQuestionsModal);
     	},
@@ -89,4 +91,21 @@ function polling() {
 $(document).ready(function() {
 	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
-});
+
+	$('#reply-button').on('click', function(){
+		var groupId = $(this).attr('data-group-id');
+
+		$.ajax({
+	        url: "/dashboard/" + groupId + "/reply",
+	        type: "POST",
+	        data: {
+	        	message: $('#reply-composer').val()	
+	        },
+	        success: function(data){
+				closeQuestionsModal();
+	        },
+		    dataType: "json",
+	    	timeout: 2000
+	    });
+	});
+});#
