@@ -19,7 +19,7 @@
         <title>Quantum :: Dashboard</title>
     </head>
 
-    <body data-event-id="{{ event_id }}">
+    <body data-event-id="{{ event.id }}">
         <header>
             <div class="wrapper">
                 <img src="/static/images/logo-big.png" alt="Quantum" style="width:203px;height:36px" />
@@ -29,10 +29,10 @@
 
         <section id="session-header">
             <div class="wrapper">
-                <h1>Q&A Session 1</h1>
+                <h1>{{ event.title }}</h1>
 
                 <div class="timeframe">
-                    <span class="time-icon"></span>05 April 21:00 - 22:00
+                    <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
                 </div>
 
                 <div class="overview">
@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </div>

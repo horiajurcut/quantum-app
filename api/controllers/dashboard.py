@@ -45,7 +45,23 @@ def dashboard_event(event_id):
         Page.id == event.page_id
     ).first()
 
-    return render_template('dashboard.html', page_id=page.page_id, event_id=event_id)
+    return render_template('dashboard.html', page_id=page.page_id, event=event)
+
+
+@app.route('/dashboard/<group_id>/details')
+def dashboard_reply(group_id):
+    group = db.session.query(Group).filter(
+        Group.id == group_id
+    ).first()
+
+    users = db.session.query(Question).filter(
+        Question.group_id == group_id
+    ).all()
+
+    return Response(json.dumps({
+        'users': [i.profile for i in users],
+        'question': group.question
+    }), mimetype='application/json')
 
 
 @app.route('/dashboard/event/<event_id>/retrieve')
@@ -186,7 +202,10 @@ def dashboard_polling(event_id):
         'questionsNumber': questions,
         'usersOverview': users,
         'answeredQuestions': [i.serialize for i in aGroups],
-        'unansweredQuestions': [i.serialize for i in uGroups]
+        'unansweredQuestions': [i.serialize for i in uGroups],
+        'totalPositive': 0,
+        'totalNegative': 0,
+        'totalNeutral': 0
     }), mimetype='application/json')
 
 
