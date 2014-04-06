@@ -84,6 +84,7 @@ def match_group(inputs, groups, min_threshold):
 
     for group_id, similarity in group_similarity:
         if similarity > min_threshold:
+            print group_id
             return groups[group_id]
 
     # Create new group
