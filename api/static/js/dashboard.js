@@ -8,30 +8,22 @@ function showQuestionsModal() {
 
 	$modalBackground.on('click', closeQuestionsModal);
 
-	var template = $('#modal-question').html();
-	var data = {
-		question: "I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!",
-		askedby : [
-			{
-				full_name: 'Stefan Filip',
-				user_id: 'stefy.filip',
-				avatar: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/p160x160/1975001_10152232954170395_510883959_n.jpg'
-			},
-			{
-				full_name: 'Horia Jurcut',
-				user_id: 'horiajurcut',
-				avatar: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c0.45.160.160/p160x160/1391726_10151966902849082_288564753_n.jpg'
-			},
-			{
-				full_name: 'Giorgiana Petre',
-				user_id: 'giorgiana.petre',
-				avatar: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c0.29.160.160/p160x160/1010306_10202683853310726_2016244149_n.jpg'
-			}
-		]	
-	};
+	var groupId = $(this).attr('data-group-id');
 
-	$modal.html(Mustache.to_html(template, data));
-	$('.modal-close-button').on('click', closeQuestionsModal);
+	$.ajax({
+        url: "/dashboard/" + groupId + "/details",
+        type: "GET",
+        success: function(data) {
+        	var template = $('#modal-question').html();
+
+        	data.groupId = groupId;
+
+			$modal.html(Mustache.to_html(template, data));
+			$('.modal-close-button').on('click', closeQuestionsModal);
+    	},
+	    dataType: "json",
+    	timeout: 2000
+    });
 
 	return false;
 }
@@ -59,21 +51,38 @@ function polling() {
 			$('.users-overview .content .value').text(data.usersOverview);
 			$('.questions-list tbody').html('');
 
+			data.unansweredQuestions.sort(function(a,b){return b.frequency-a.frequency});
+
 			jQuery.each(data.unansweredQuestions, function(index, value) {
 
-				var sentiment = 'green';
-				if(value.sentiment === 'negative')
-					sentiment = 'red';
+				if(value.sentiment === 'positive') {
+					data.totalPositive++;
+					sentiment = 'green';
+				} else {
+					if(value.sentiment === 'negative') {
+						data.totalNegative++;
+						sentiment = 'red';
+					} else {
+						data.totalNeutral++;
+						sentiment = 'grey';
+					}
+				}
 
-				$('.questions-list tbody').append('<tr>\
+				$('.questions-list tbody').append('<tr data-group-id="' + value.id + '">\
 					<td class="sentiment ' + sentiment + '"></td>\
 					<td class="question">' + value.question + '</td>\
 		            <td class="frequency"><span>' + value.frequency + '</span></td>\
 		        </tr>');
 			});
+
+			$('.positive').text('+' + data.totalPositive);
+			$('.neutral').text(data.totalNeutral);
+			$('.negative').text('-' + data.totalNegative);
+
+			$('.questions-list tbody tr').on('click', showQuestionsModal);
         },
         dataType: "json",
-        complete: setTimeout(function() { polling() }, 1000),
+        complete: setTimeout(function() { polling() }, 5000),
         timeout: 2000
     })
 }
@@ -82,4 +91,21 @@ function polling() {
 $(document).ready(function() {
 	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
-});
+
+	$('#reply-button').on('click', function(){
+		var groupId = $(this).attr('data-group-id');
+
+		$.ajax({
+	        url: "/dashboard/" + groupId + "/reply",
+	        type: "POST",
+	        data: {
+	        	message: $('#reply-composer').val()	
+	        },
+	        success: function(data){
+				closeQuestionsModal();
+	        },
+		    dataType: "json",
+	    	timeout: 2000
+	    });
+	});
+});#

@@ -45,7 +45,54 @@ def dashboard_event(event_id):
         Page.id == event.page_id
     ).first()
 
-    return render_template('dashboard.html', page_id=page.page_id, event_id=event_id)
+    return render_template('dashboard.html', page_id=page.page_id, event=event)
+
+
+@app.route('/dashboard/<group_id>/details')
+def dashboard_details(group_id):
+    group = db.session.query(Group).filter(
+        Group.id == group_id
+    ).first()
+
+    users = db.session.query(Question).filter(
+        Question.group_id == group_id
+    ).group_by(Question.user).all()
+
+    return Response(json.dumps({
+        'users': [i.profile for i in users],
+        'question': group.question
+    }), mimetype='application/json')
+
+
+@app.route('/dashboard/<group_id>/reply')
+def dashboard_reply(group_id):
+    data = request.form
+
+    group = db.session.query(Group).filter(
+        Group.id == group_id
+    ).first()
+
+    questions = db.session.query(Question).filter(
+        Question.group_id == group.id
+    ).all()
+
+    for q in questions:
+        params = {
+            'access_token':       session['PAGE_TOKEN'],
+            'message':            data['message'],
+            'format':             'json',
+            'suppress_http_code': 1,
+            'method':             'post'
+        }
+        params = urllib.urlencode(params)
+
+        data = json.loads(
+            urllib.urlopen('https://graph.facebook.com/' + q.fb_id + '/comments?%s' % params).read()
+        )
+
+    return Response(json.dumps({
+        'status': 'ok'
+    }), mimetype='application/json')
 
 
 @app.route('/dashboard/event/<event_id>/retrieve')
@@ -158,6 +205,8 @@ def dashboard_polling(event_id):
         Page.id == event.page_id
     ).first()
 
+    dashboard_retrieve(event_id)
+
     aGroups = db.session.query(Group).filter(
         Group.event_id == event_id
     ).filter(
@@ -184,7 +233,10 @@ def dashboard_polling(event_id):
         'questionsNumber': questions,
         'usersOverview': users,
         'answeredQuestions': [i.serialize for i in aGroups],
-        'unansweredQuestions': [i.serialize for i in uGroups]
+        'unansweredQuestions': [i.serialize for i in uGroups],
+        'totalPositive': 0,
+        'totalNegative': 0,
+        'totalNeutral': 0
     }), mimetype='application/json')
 
 
@@ -268,6 +320,8 @@ def dashboard_page_token(page_id, access_token):
         db.session.add(db_page)
     else:
         db_page.token = access_token
+
+    session['PAGE_TOKEN'] = access_token
 
     db.session.commit()
 

@@ -19,7 +19,7 @@
         <title>Quantum :: Dashboard</title>
     </head>
 
-    <body data-event-id="{{ event_id }}">
+    <body data-event-id="{{ event.id }}">
         <header>
             <div class="wrapper">
                 <img src="/static/images/logo-big.png" alt="Quantum" style="width:203px;height:36px" />
@@ -29,10 +29,10 @@
 
         <section id="session-header">
             <div class="wrapper">
-                <h1>Q&A Session 1</h1>
+                <h1>{{ event.title }}</h1>
 
                 <div class="timeframe">
-                    <span class="time-icon"></span>05 April 21:00 - 22:00
+                    <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
                 </div>
 
                 <div class="overview">
@@ -54,7 +54,7 @@
                         <div class="circle"></div>
                         <div class="content">
                             <div class="title">Vibe</div>
-                            <div class="value">+1 230 000 <span class="light">/ 2 486 000</span></div>
+                            <div class="value"><span class="text-green positive">+0</span> / <span class="neutral">0</span> / <span class="text-red negative"> -0</span></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -91,18 +91,18 @@
                     {{ question }}
                     <div class="asked-by">
                         ASKED BY:
-                        <ul>{{#askedby}}
+                        <ul>{{#users}}
                             <li>
-                                <a href="http://facebook.com/{{user_id}}" target="_blank">
-                                    <img src="{{avatar}}" alt="{{full_name}}" />
+                                <a href="{{ profile }}" target="_blank">
+                                    <img src="{{avatar}}" />
                                 </a>
                             </li>
-                        {{/askedby}}</ul>
+                        {{/users}}</ul>
                     </div>
                 </section>
                 <section class="modal-question-composer">
                     <textarea id="reply-composer" placeholder="Your Answer Here..." />
-                    <a href="#" id="reply-button">Answer</a>
+                    <a href="#" id="reply-button" data-group-id="{{ groupId }}">Answer</a>
                 </section>
             </div>
         </script>
