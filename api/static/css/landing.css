@@ -49,6 +49,12 @@ h1.logo {
 	color: #fff;
 }
 
+.page1 h2 {
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 18px;
+}
+
 .email-address {
 	border: solid 1px #fff;
 	border-radius: 2px;
@@ -59,6 +65,7 @@ h1.logo {
 	color: #fff !important;
 	background-color: transparent !important;
 	width: 300px;
+	display: none;
 }
 
 .page2 {
@@ -91,7 +98,7 @@ h1.logo {
 	color: rgba(57,63,72,.9);
 }
 
-.page4 {
+.page4, .page6 {
 	text-align: center;
 }
 
@@ -104,7 +111,7 @@ h1.logo {
 	margin-top: 30px;
 }
 
-.page4 h2 {
+.page4 h2, .page6 h2 {
 	text-transform: uppercase;
 	font-size: 16px;
 	font-weight: 600;
@@ -155,6 +162,93 @@ h1.logo {
 	top: 35%;
 	width: 560px;
 	text-align: center;
+}
+
+.page6 {
+	padding-top: 30px;
+}
+
+.page6 ul {
+	list-style-type: none;
+	text-align: center;
+	padding: 0;
+}
+
+.page6 ul li {
+	width: 240px;
+	display: inline-block;
+	position: relative;
+	margin: 0 15px;
+}
+
+.page6 ul li .plan-box {
+	display: block;
+	margin-top: 100px;
+	height: 270px;
+	border: solid 4px #393f48;
+	padding-top: 120px;
+	font-size: 14px;
+	font-weight: 600;
+	background-color: #ddd;
+}
+
+.page6 ul li .plan-circle {
+	display: block;
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	top: 0;	
+	left: 20px;
+	border: solid 8px #393f48;
+	border-radius: 100px;
+	color: #fff;
+	padding-top: 70px;
+	background-color: #ddd;
+}
+
+.page6 ul li.red.active .plan-circle {
+	transition: background-color 4s;
+	background-color: #ed5565;
+}
+
+.page6 ul li.green.active .plan-circle {
+	transition: background-color 4s;
+	background-color: #9cd261;
+}
+
+.page6 ul li.blue.active .plan-circle {
+	transition: background-color 4s;
+	background-color: #4bb2bf;
+}
+
+.page6 ul li .dollar {
+	display: inline-block;
+	font-size: 32px;
+	font-weight: 300;
+	vertical-align: top;
+	margin-top: -10px;
+}
+
+.page6 ul li .value {
+	display: inline-block;
+	margin-left: -10px;
+	font-weight: 300;
+	font-size: 68px;
+}
+
+.page6 ul li .period {
+	display: inline-block;;
+	margin-left: -10px;
+	font-weight: 300;
+}
+
+.page6 ul li .title {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 14px;
+	margin-top: 10px;
 }
 
 .page7 h2 {
