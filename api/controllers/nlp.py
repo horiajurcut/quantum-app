@@ -76,7 +76,8 @@ def match_similar(inputs, questions):
     vector_lsi = lsi[vector]
 
     index = similarities.MatrixSimilarity(lsi[corpus])
-    return index[vector_lsi]
+    sims = index[vector_lsi]
+    return sims
 
 def match_group(inputs, groups, min_threshold):
 
@@ -86,7 +87,8 @@ def match_group(inputs, groups, min_threshold):
     
     print group_questions
 
-    print match_similar(inputs, group_questions)
+    match_similar(inputs, group_questions)
+    return
 
     # groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
