@@ -80,7 +80,7 @@ def dashboard_retrieve(event_id):
                 Group.event_id == event.id
             ).all()
 
-             return Response(json.dumps({
+            return Response(json.dumps({
                 'status': groups
             }), mimetype='application/json')
 
