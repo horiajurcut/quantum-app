@@ -6,11 +6,12 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
-	$modalBackground.css({'top': $('body').offset().top});
-
-	$('body').css({
-	    'overflow': 'hidden',
-	    'height': '100%'
+	$('body').on({
+		'mousewheel': function(e) {
+		    if (e.target.id == 'el') return;
+	    	e.preventDefault();
+	   	 	e.stopPropagation();
+	    }
 	});
 
 	$modalBackground.on('click', closeQuestionsModal);
@@ -96,7 +97,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="unanswered" style="display: block" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="unanswered" style="opacity: 1" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
@@ -118,7 +119,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="answered" style="display: none;" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="answered" style="opacity: 0;" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
@@ -141,7 +142,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="unanswered" style="display: none;" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="unanswered" style="opacity: 0;" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
@@ -163,7 +164,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="answered" style="display: block" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="answered" style="opacity: 1" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
