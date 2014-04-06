@@ -17,4 +17,4 @@ def page_not_found(e):
 def page_not_found(e):
     """Return a custom 500 error."""
 
-    return traceback.format_exc() + e, 500
+    return traceback.format_exc(), 500
