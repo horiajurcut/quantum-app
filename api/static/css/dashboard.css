@@ -171,10 +171,16 @@
 
 .green {
 	background-color: #9cd261;
+	color: #9cd261;
 }
 
 .red {
 	background-color: #ec5464;
+	color: #ec5464;
+}
+
+.grey {
+	background-color: #ddd;
 }
 
 .modal-question-header {

@@ -61,9 +61,11 @@ function polling() {
 
 			jQuery.each(data.unansweredQuestions, function(index, value) {
 
-				var sentiment = 'red';
+				var sentiment = 'grey';
 				if(value.sentiment === 'positive')
 					sentiment = 'green';
+				if(value.sentiment === 'negative')
+					sentiment = 'red';
 
 				$('.questions-list tbody').append('<tr>\
 					<td class="sentiment ' + sentiment + '"></td>\
