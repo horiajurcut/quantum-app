@@ -13,9 +13,17 @@ function showCreateSessionModal() {
 	$modal.html(Mustache.to_html(template, null));
 	$('.modal-close-button').on('click', closeCreateSessionModal);
 	$('.cancel-create-session').on('click', closeCreateSessionModal);
+	$('.submit-create-session').on('click', submitNewEvent);
 	$('.date-wrapper input').datetimepicker();
 
 	return false;
+}
+
+function submitNewEvent() {
+	$('#session-start-date').val($('#start-date').val());
+	$('#session-end-date').val($('#end-date').val());
+
+	$('.new-event').submit();
 }
 
 function closeCreateSessionModal() {
@@ -29,8 +37,8 @@ function closeCreateSessionModal() {
 
 $(document).ready(function() {
 	$('.session').on('click', function() {
-		window.location.href = 'dashboard.html';	
-	});	
+		window.location.href = '/dashboard/event/' + $(this).parent().attr('data-event-id');
+	});
 
 	$('.add-session-button').on('click', showCreateSessionModal);
 });

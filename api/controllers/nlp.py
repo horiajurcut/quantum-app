@@ -51,22 +51,10 @@ def npl_rank_keywords():
         'accounts': ranked
     }), mimetype='application/json')
 
-@app.route('/nlp/similar')
-def nlp_similar():
-    documents = [
-        "Human machine interface for lab abc computer applications",
-        "A survey of user opinion of computer system response time",
-        "The EPS user interface management system",
-        "System and human system engineering testing of EPS",
-        "Relation of user perceived response time to error measurement",
-        "The generation of random binary unordered trees",
-        "The intersection graph of paths in trees",
-        "Graph minors IV Widths of trees and well quasi ordering",
-        "Graph minors A survey"]
-
+def match_similar(inputs, questions):
     # remove common words and tokenize
-    stoplist = set('for a of the and to in by from on with as a '.split())
-    texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
+    stoplist = set('for a of the and to in'.split())
+    texts = [[word for word in question.lower().replace('?', '').split() if word not in stoplist] for question in questions]
 
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
@@ -75,14 +63,27 @@ def nlp_similar():
     corpus = [dictionary.doc2bow(text) for text in texts]
 
     # Define LSI space
-    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=10)
+    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
     # Get similarity of teh doc vs documents
-    doc = "Human computer interaction"
-    vector = dictionary.doc2bow(doc.lower().split())
+    vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
 
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    # return Response(list(sims))
+    return sims
+
+def match_group(inputs, groups, min_threshold):
+    group_questions = []
+    for group in groups:
+        group_questions.append(group.question)
+
+    group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
+
+    for group_id, similarity in group_similarity:
+        if similarity > min_threshold:
+            return groups[group_id]
+
+    # Create new group
+    return None
