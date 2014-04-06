@@ -64,10 +64,16 @@ def dashboard_retrieve(event_id):
             'fb_id':    question['id'],
             'question': question['message']
         }
-        q = Question(**new_question)
 
-        db.session.add(q)
-        db.session.commit()
+        db_q = db.session.query(Question).filter(
+            Question.fb_id == question['id']
+        ).first()
+
+        if not db_q:
+            q = Question(**new_question)
+
+            db.session.add(q)
+            db.session.commit()
 
     return Response(json.dumps({
         'status': questions
