@@ -64,7 +64,7 @@ def match_similar(inputs, questions):
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
 
-    print texts
+    raise Exception(texts)
 
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
