@@ -57,10 +57,14 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in by from on with as a'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
+    print texts
+
     # remove words that appear only once
     all_tokens = sum(texts, [])
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
     texts = [[word for word in text if word not in tokens_once] for text in texts]
+
+    print texts
 
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
