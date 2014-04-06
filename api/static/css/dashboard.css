@@ -1,3 +1,7 @@
+body {
+	margin-bottom: 40px;
+}
+
 .back-button {
 	display: inline-block;
 	float: right;
@@ -169,14 +173,20 @@
 	color: #9c9fa3;	
 }
 
+.text-green {
+	color: #9cd261;
+}
+
+.text-red {
+	color: #ec5464;
+}
+
 .green {
 	background-color: #9cd261;
-	color: #9cd261;
 }
 
 .red {
 	background-color: #ec5464;
-	color: #ec5464;
 }
 
 .grey {
