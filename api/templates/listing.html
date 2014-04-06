@@ -42,7 +42,7 @@
                                 <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
                             </span>
                             <a href="/dashboard/event/{{ event.id }}/delete" class="delete-session"></a>
-                            {% if event.status %}
+                            {% if event.status == 0 %}
                             <a href="/dashboard/event/{{ event.id }}/publish" class="start-session"></a>
                             {% endif %}
                         </span>
