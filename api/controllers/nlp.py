@@ -83,6 +83,9 @@ def match_group(input, groups, min_threshold):
     group_questions = [];
     for key, group in groups.items():
         group_questions.append(group['content'])
+    
+    print(group_questions)
+
 
     groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
