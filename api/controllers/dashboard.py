@@ -90,8 +90,6 @@ def dashboard_retrieve(event_id):
                     'question': new_question['question']
                 }
 
-
-
                 # Get Sentiment
                 params = {
                     'apikey':     '2ccd6f653c1e4253b6ac5ee0dadb284bde58331e',
@@ -137,6 +135,23 @@ def dashboard_delete(event_id):
 
     db.session.delete(event)
     db.session.commit()
+
+    return redirect('/dashboard/page/%s' % page.page_id)
+
+
+@app.route('/dashboard/event/<event_id>/polling')
+def dashboard_polling(event_id):
+    event = db.session.query(Event).filter(
+        Event.id == event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
+    aGroups = db.session.query(Group).filter(
+        Group.event_id == event_id
+    ).all()
 
     return redirect('/dashboard/page/%s' % page.page_id)
 
