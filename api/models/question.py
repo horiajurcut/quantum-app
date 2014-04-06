@@ -21,3 +21,11 @@ class Question(db.Model):
             'fb_id': self.fb_id,
             'question': self.question
         }
+
+
+    @property
+    def profile(self):
+        return {
+            'avatar': 'https://graph.facebook.com/%s/picture?width=%s&height=%s' % (self.user, 36, 36),
+            'profile': 'https://facebook.com/' + self.user
+        }

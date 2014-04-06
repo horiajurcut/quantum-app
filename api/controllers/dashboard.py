@@ -48,6 +48,22 @@ def dashboard_event(event_id):
     return render_template('dashboard.html', page_id=page.page_id, event=event)
 
 
+@app.route('/dashboard/<group_id>/details')
+def dashboard_reply(group_id):
+    group = db.session.query(Group).filter(
+        Group.id == group_id
+    ).first()
+
+    users = db.session.query(Question).filter(
+        Question.group_id == group_id
+    ).all()
+
+    return Response(json.dumps({
+        'users': [i.profile for i in users],
+        'question': group.question
+    }), mimetype='application/json')
+
+
 @app.route('/dashboard/event/<event_id>/retrieve')
 def dashboard_retrieve(event_id):
     event = db.session.query(Event).filter(
