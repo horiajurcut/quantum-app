@@ -161,7 +161,13 @@ def dashboard_polling(event_id):
         Group.status == 0
     ).all()
 
+    questions = db.session.query(Question).filter(
+        Question.event_id == event.id
+    ).count()
+
     return Response(json.dumps({
+        'questionsNumber': questions,
+        'usersOverview': 100,
         'answeredQuestions': [i.serialize for i in aGroups],
         'unansweredQuestions': [i.serialize for i in uGroups]
     }), mimetype='application/json')
