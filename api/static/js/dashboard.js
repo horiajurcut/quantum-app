@@ -6,7 +6,7 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
-	$('html').css({
+	$('html, body').css({
 	    'overflow': 'hidden',
 	    'height': '100%'
 	});
