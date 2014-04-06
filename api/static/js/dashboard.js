@@ -18,8 +18,27 @@ function showQuestionsModal() {
 
         	data.groupId = groupId;
 
+        	console.log(groupId);
+
 			$modal.html(Mustache.to_html(template, data));
 			$('.modal-close-button').on('click', closeQuestionsModal);
+
+			$('#reply-button').on('click', function(){
+				var groupId = $(this).attr('data-group-id');
+				console.log('a');
+				$.ajax({
+			        url: "/dashboard/" + groupId + "/reply",
+			        type: "POST",
+			        data: {
+			        	message: $('#reply-composer').val()	
+			        },
+			        success: function(data){
+						closeQuestionsModal();
+			        },
+				    dataType: "json",
+			    	timeout: 2000
+		   		});
+			});
     	},
 	    dataType: "json",
     	timeout: 2000
@@ -92,20 +111,5 @@ $(document).ready(function() {
 	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
 
-	$('#reply-button').on('click', function(){
-		var groupId = $(this).attr('data-group-id');
-
-		$.ajax({
-	        url: "/dashboard/" + groupId + "/reply",
-	        type: "POST",
-	        data: {
-	        	message: $('#reply-composer').val()	
-	        },
-	        success: function(data){
-				closeQuestionsModal();
-	        },
-		    dataType: "json",
-	    	timeout: 2000
-	    });
-	});
+	
 });#
