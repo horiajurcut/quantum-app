@@ -38,12 +38,10 @@ function showQuestionsModal() {
 						closeQuestionsModal();
 			        },
 				    dataType: "json",
-			    	timeout: 2000
 		   		});
 			});
     	},
 	    dataType: "json",
-    	timeout: 2000
     });
 
 	return false;
