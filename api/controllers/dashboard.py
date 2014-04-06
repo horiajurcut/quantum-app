@@ -49,6 +49,27 @@ def dashboard_delete(event_id):
     return redirect('/dashboard/page/%s' % page.page_id)
 
 
+@app.route('/dashboard/event/<event_id>/publish')
+def dashboard_publish(event_id):
+    event = db.session.query(Event).filter(
+        Event.id == event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
+    params = {
+        'access_token': page.token,
+        'to':           page.id,
+        'message':      'This is an awesome post. Deal with it!'
+    }
+    params = urllib.urlencode(params)
+    urllib.urlopen('https://graph.facebook.com/me/%s/feed' % page.id, params)
+
+    return redirect('/dashboard/page/%s' % page.page_id)
+
+
 @app.route('/dashboard/new', methods=['POST'])
 def dashboard_new():
     form = request.form
