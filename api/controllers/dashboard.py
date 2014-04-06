@@ -98,6 +98,9 @@ def dashboard_reply(group_id):
             urllib.urlopen('https://graph.facebook.com/' + q.fb_id + '/comments?%s' % params).read()
         )
 
+    group.status = 1
+    db.session.commit()
+
     return Response(json.dumps({
         'status': 'ok'
     }), mimetype='application/json')
