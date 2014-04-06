@@ -57,40 +57,26 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
-    print texts
-
      # remove words that appear only once
     all_tokens = sum(texts, [])
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
     texts = [[word for word in text if word not in tokens_once] for text in texts]
 
-    print texts
-
-
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
-
-    print dictionary
 
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
 
-    print corpus
-
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
-
-    print inputs
 
     # Get similarity of teh doc vs documents
     vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
 
-    print vector_lsi
-
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
-    print sims
     return sims
 
 def match_group(inputs, groups, min_threshold):
@@ -100,8 +86,6 @@ def match_group(inputs, groups, min_threshold):
         group_questions.append(group['content'])
     
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
-
-    print group_similarity
 
     for group_id, similarity in group_similarity:
         if similarity > min_threshold:
@@ -191,7 +175,7 @@ def nlp_similar():
         }
     }
 
-    inputs = "Taci ma"
+    inputs = "Human computer interaction"
     sims = match_group(inputs, groups, min_threshold)
 
     return Response(json.dumps(sims), mimetype='application/json')
