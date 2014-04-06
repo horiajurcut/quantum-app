@@ -41,7 +41,7 @@ def dashboard_delete(event_id):
 
     page = db.session.query(Page).filter(
         Page.id == event.page_id
-    )
+    ).first()
 
     db.session.delete(event)
     db.session.commit()
