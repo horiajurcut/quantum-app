@@ -266,7 +266,7 @@ def dashboard_publish(event_id):
     params = {
         'access_token':       page.token,
         'to':                 page.page_id,
-        'message':            'This is an awesome post. Deal with it!',
+        'message':            'I will hit the start of my new %s Q&A session. Join now and ask me all you can think of. Shoot!' % event.title,
         'format':             'json',
         'suppress_http_code': 1,
         'method':             'post'
@@ -282,7 +282,7 @@ def dashboard_publish(event_id):
         event.status = 1
         db.session.commit()
 
-    return redirect('/dashboard/page/%s' % page.page_id)
+    return redirect('/dashboard/events/%s' % event.id)
 
 
 @app.route('/dashboard/new', methods=['POST'])
