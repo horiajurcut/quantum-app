@@ -75,6 +75,7 @@ def dashboard_retrieve(event_id):
     for question in questions['data']:
         new_question = {
             'fb_id':    question['id'],
+            'user':     question['from']['id'],
             'question': question['message'],
             'event_id': event.id
         }
@@ -159,9 +160,26 @@ def dashboard_polling(event_id):
 
     aGroups = db.session.query(Group).filter(
         Group.event_id == event_id
+    ).filter(
+        Group.status == 1
     ).all()
 
-    return redirect('/dashboard/page/%s' % page.page_id)
+    uGroups = db.session.query(Group).filter(
+        Group.event_id == event_id
+    ).filter(
+        Group.status == 0
+    ).all()
+
+    questions = db.session.query(Question).filter(
+        Question.event_id == event.id
+    ).count()
+
+    return Response(json.dumps({
+        'questionsNumber': questions,
+        'usersOverview': 100,
+        'answeredQuestions': [i.serialize for i in aGroups],
+        'unansweredQuestions': [i.serialize for i in uGroups]
+    }), mimetype='application/json')
 
 
 @app.route('/dashboard/event/<event_id>/publish')
@@ -248,14 +266,3 @@ def dashboard_page_token(page_id, access_token):
     db.session.commit()
 
     return redirect('/dashboard/page/%s' % page_id)
-
-
-@app.route('/dashboard')
-def dashboard():
-    users = db.session.query(User).all()
-
-    sentence = "At eight o'clock on Thursday morning, Arthur didn't feel very good."
-
-    return Response(json.dumps({
-        'users': [u.serialize for u in users]
-    }), mimetype='application/json')
