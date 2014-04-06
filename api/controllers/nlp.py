@@ -80,7 +80,7 @@ def match_group(inputs, groups, min_threshold):
         group_questions.append(group.question)
 
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
-    # raise Exception(group_similarity)
+    raise Exception(group_similarity)
 
     for group_id, similarity in group_similarity:
         if similarity > min_threshold:
