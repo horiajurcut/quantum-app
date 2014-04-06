@@ -83,8 +83,7 @@ def match_group(inputs, groups, min_threshold):
     for group in groups:
         group_questions.append(group.question)
 
-    with open('/tmp/a.l', 'w') as f:
-        f.write("\n".join(group_questions))
+    print group_questions
 
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
 
