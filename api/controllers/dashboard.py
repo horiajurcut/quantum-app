@@ -140,7 +140,7 @@ def dashboard_delete(event_id):
 
 
 @app.route('/dashboard/event/<event_id>/polling')
-def dashboard_delete(event_id):
+def dashboard_polling(event_id):
     event = db.session.query(Event).filter(
         Event.id == event_id
     ).first()
