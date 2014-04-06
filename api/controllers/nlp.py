@@ -56,11 +56,6 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
-    # remove words that appear only once
-    #all_tokens = sum(texts, [])
-    #tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-    #texts = [[word for word in text if word not in tokens_once] for text in texts]
-
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
 
@@ -83,8 +78,6 @@ def match_group(inputs, groups, min_threshold):
     group_questions = []
     for group in groups:
         group_questions.append(group.question)
-
-    print group_questions
 
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
 

@@ -82,7 +82,7 @@ def dashboard_retrieve(event_id):
 
             g = None
             if groups:
-                g = match_group(new_question['question'], groups, 0.4)
+                g = match_group(new_question['question'], groups, 0.9)
 
             if g is None:
                 g = {
