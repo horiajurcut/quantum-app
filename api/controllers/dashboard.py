@@ -10,6 +10,7 @@ from api.models.user import User
 from api.models.page import Page
 from api.models.event import Event
 from api.models.question import Question
+from api.models.group import Group
 
 from api.controllers.nlp import *
 
