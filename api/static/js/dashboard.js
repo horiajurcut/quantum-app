@@ -6,6 +6,8 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
+	$('body').css("overflow", "hidden");
+
 	$modalBackground.on('click', closeQuestionsModal);
 
 	var groupId = $(this).attr('data-group-id');
