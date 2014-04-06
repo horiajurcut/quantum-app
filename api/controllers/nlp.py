@@ -81,7 +81,7 @@ def match_similar(inputs, questions):
 def match_group(inputs, groups, min_threshold):
     group_questions = []
     for group in groups:
-        group_questions.append(group['question'])
+        group_questions.append(group.question)
 
     print group_questions
 
