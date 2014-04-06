@@ -116,7 +116,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="answered" style="height: 0;" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="answered" style="height: 0px;" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
@@ -139,7 +139,7 @@ function polling() {
 						}
 					}
 
-					$('.questions-list tbody').append('<tr data-type="unanswered" style="height: 0;" data-group-id="' + value.id + '">\
+					$('.questions-list tbody').append('<tr data-type="unanswered" style="height: 0px;" data-group-id="' + value.id + '">\
 						<td class="sentiment ' + sentiment + '"></td>\
 						<td class="question">' + value.question + '</td>\
 			            <td class="frequency"><span>' + value.frequency + '</span></td>\
