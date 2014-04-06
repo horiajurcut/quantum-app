@@ -72,13 +72,13 @@ def match_similar(inputs, questions):
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
-    # # Get similarity of teh doc vs documents
-    # vector = dictionary.doc2bow(inputs.lower().split())
-    # vector_lsi = lsi[vector]
+    # Get similarity of teh doc vs documents
+    vector = dictionary.doc2bow(inputs.lower().split())
+    vector_lsi = lsi[vector]
 
-    # index = similarities.MatrixSimilarity(lsi[corpus])
-    # sims = index[vector_lsi]
-    # return sims
+    index = similarities.MatrixSimilarity(lsi[corpus])
+    sims = index[vector_lsi]
+    return sims
 
 def match_group(inputs, groups, min_threshold):
     group_questions = []
