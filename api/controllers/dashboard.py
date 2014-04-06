@@ -151,9 +151,13 @@ def dashboard_polling(event_id):
 
     aGroups = db.session.query(Group).filter(
         Group.event_id == event_id
+    ).filter(
+        Group.status == 1
     ).all()
 
-    return redirect('/dashboard/page/%s' % page.page_id)
+    return Response(json.dumps({
+        'answeredQuestions': [i.serialize for i in aGroups]
+    }), mimetype='application/json')
 
 
 @app.route('/dashboard/event/<event_id>/publish')
@@ -240,14 +244,3 @@ def dashboard_page_token(page_id, access_token):
     db.session.commit()
 
     return redirect('/dashboard/page/%s' % page_id)
-
-
-@app.route('/dashboard')
-def dashboard():
-    users = db.session.query(User).all()
-
-    sentence = "At eight o'clock on Thursday morning, Arthur didn't feel very good."
-
-    return Response(json.dumps({
-        'users': [u.serialize for u in users]
-    }), mimetype='application/json')
