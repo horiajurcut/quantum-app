@@ -90,10 +90,7 @@ def dashboard_retrieve(event_id):
                     'question': new_question['question']
                 }
 
-                g = Group(**g)
 
-                db.session.add(g)
-                db.session.commit()
 
                 # Get Sentiment
                 params = {
@@ -107,9 +104,14 @@ def dashboard_retrieve(event_id):
                     urllib.urlopen('http://access.alchemyapi.com/calls/text/TextGetTextSentiment?%s' % params).read()
                 )
 
-                return Response(json.dumps({
-                    'status': sentiment
-                }), mimetype='application/json')
+                if 'docSentiment' in sentiment and 'type' in sentiment['docSentiment']:
+                    if sentiment['docSentiment']['type']:
+                        g['sentiment'] = sentiment['docSentiment']['type']
+
+                g = Group(**g)
+
+                db.session.add(g)
+                db.session.commit()
 
             new_question['group_id'] = g.id
 

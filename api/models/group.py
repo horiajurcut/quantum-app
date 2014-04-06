@@ -7,6 +7,7 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer)
     question = db.Column(db.String(2000))
+    sentiment = db.Column(db.String(30), nullable=True)
 
     def __init__(self, *args, **kwargs):
         for key in kwargs:
