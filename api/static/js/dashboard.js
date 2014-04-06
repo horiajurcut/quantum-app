@@ -23,14 +23,11 @@ function showQuestionsModal() {
 
         	data.groupId = groupId;
 
-        	console.log(groupId);
-
 			$modal.html(Mustache.to_html(template, data));
 			$('.modal-close-button').on('click', closeQuestionsModal);
 
 			$('#reply-button').on('click', function(){
 				var groupId = $(this).attr('data-group-id');
-				console.log('a');
 				$.ajax({
 			        url: "/dashboard/" + groupId + "/reply",
 			        type: "POST",
