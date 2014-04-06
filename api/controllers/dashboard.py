@@ -90,6 +90,7 @@ def dashboard_retrieve(event_id):
                 }
 
                 g = Group(**g)
+                db.session.add(g)
 
             new_question['group_id'] = g.id
 
