@@ -51,7 +51,7 @@ def npl_rank_keywords():
         'accounts': ranked
     }), mimetype='application/json')
 
-def match_similar(input, questions):
+def match_similar(inputs, questions):
 
     # remove common words and tokenize
     stoplist = set('for a of the and to in by from on with as a'.split())
@@ -72,21 +72,21 @@ def match_similar(input, questions):
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
 
     # Get similarity of teh doc vs documents
-    vector = dictionary.doc2bow(input.lower().split())
+    vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
 
     index = similarities.MatrixSimilarity(lsi[corpus])
     return index[vector_lsi]
 
-def match_group(input, groups, min_threshold):
+def match_group(inputs, groups, min_threshold):
 
-    group_questions = [];
+    group_questions = []
     for key, group in groups.items():
         group_questions.append(group['content'])
     
     print(group_questions)
 
-    print(match_similar(input, group_questions))
+    print(match_similar(inputs, group_questions))
 
     # groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
