@@ -1,4 +1,5 @@
 from api.core import db
+from api.models.question import Question
 
 import random
 
@@ -19,9 +20,13 @@ class Group(db.Model):
 
     @property
     def serialize(self):
+        q = db.session.query(Question).filter(
+            Question.group_id = self.id
+        ).count()
+
         return {
             'id': self.id,
             'question': self.question,
             'sentiment': self.sentiment,
-            'frequency': random.randint(100, 1000)
+            'frequency': q
         }
