@@ -56,7 +56,7 @@ def dashboard_reply(group_id):
 
     users = db.session.query(Question).filter(
         Question.group_id == group_id
-    ).all()
+    ).group_by(Question.user).all()
 
     return Response(json.dumps({
         'users': [i.profile for i in users],
