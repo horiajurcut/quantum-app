@@ -18,6 +18,7 @@ import urllib
 import requests
 import json
 import datetime
+import gensim
 
 
 @app.route('/dashboard/page/<page_id>')
