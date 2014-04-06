@@ -68,7 +68,7 @@ def dashboard_publish(event_id):
         'suppress_http_code': 1,
         'method':       'post'
     }
-    data = requests.get('https://graph.facebook.com/%s/feed' % page.id, data=params)
+    data = requests.get('https://graph.facebook.com/%s/feed' % page.page_id, data=params)
     return data.content
 
     return redirect('/dashboard/page/%s' % page.page_id)
