@@ -41,7 +41,7 @@ def dashboard_retrieve(event_id):
         Event.id == event_id
     ).first()
 
-    if event.fb_post_id is not None:
+    if event.fb_post_id is None:
         return Response(json.dumps({
             'questions': []
         }), mimetype='application/json')
