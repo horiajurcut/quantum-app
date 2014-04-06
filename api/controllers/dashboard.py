@@ -9,6 +9,7 @@ from api.core import app, db
 from api.models.user import User
 from api.models.page import Page
 from api.models.event import Event
+from api.models.question import Question
 
 import urllib
 import requests
@@ -57,6 +58,16 @@ def dashboard_retrieve(event_id):
     questions = json.loads(
         urllib.urlopen('https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params).read()
     )
+
+    for question in questions['data']:
+        new_question = {
+            'fb_id':    question['id'],
+            'question': question['message']
+        }
+        q = Question(**new_question)
+
+        db.session.add(q)
+        db.session.commit()
 
     return Response(json.dumps({
         'status': questions
