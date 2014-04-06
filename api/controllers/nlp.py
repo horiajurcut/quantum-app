@@ -97,11 +97,11 @@ def nlp_similar():
     groups = {
         '1': {
             'id': 1,
-            'content': 'Will the show continue?',
+            'content': 'Cars are awesome.',
         },
         '2': {
             'id': 2,
-            'content': 'Do you like TV?',
+            'content': 'Will the show continue?',
         }
     }
 
