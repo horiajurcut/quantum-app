@@ -123,6 +123,7 @@ def dashboard_publish(event_id):
 
     if 'id' in data:
         event.fb_post_id = data['id']
+        event.status = 1
         db.session.commit()
 
     return redirect('/dashboard/page/%s' % page.page_id)
