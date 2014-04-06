@@ -62,6 +62,8 @@ function polling() {
 			$('.users-overview .content .value').text('-' + data.totalNegative);
 			$('.questions-list tbody').html('');
 
+			data.unansweredQuestions.sort(function(a,b){return b.frequency-a.frequency});
+
 			jQuery.each(data.unansweredQuestions, function(index, value) {
 
 				var sentiment = 'grey';
