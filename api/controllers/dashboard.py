@@ -60,7 +60,8 @@ def dashboard_details(group_id):
 
     return Response(json.dumps({
         'users': [i.profile for i in users],
-        'question': group.question
+        'question': group.question,
+        'answer': group.answer
     }), mimetype='application/json')
 
 
@@ -99,6 +100,7 @@ def dashboard_reply(group_id):
         )
 
     group.status = 1
+    group.answer = data['message']
     db.session.commit()
 
     return Response(json.dumps({

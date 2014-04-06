@@ -32,7 +32,7 @@
                 <h1>{{ event.title }}</h1>
 
                 <div class="timeframe">
-                    <span class="time-icon"></span>{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}
+                    <span class="time-icon"></span>{% if event.start_date %}{{ event.start_date.strftime('%d %B %H:%M') }} - {{ event.end_date.strftime('%H:%M') }}{% else  %} To Be Announced{% endif %}
                 </div>
 
                 <div class="overview">
