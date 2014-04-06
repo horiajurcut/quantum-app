@@ -175,7 +175,7 @@ def dashboard_polling(event_id):
     ).count()
 
     users = db.session.query(Question).filter(
-        Question.event == event.id
+        Question.event_id == event.id
     ).group_by(
         Question.user
     ).count()
