@@ -80,9 +80,13 @@ def match_similar(inputs, questions):
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
+    print inputs
+
     # Get similarity of teh doc vs documents
     vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
+
+    print vector_lsi
 
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
@@ -187,7 +191,7 @@ def nlp_similar():
         }
     }
 
-    inputs = "I like watching television"
+    inputs = "Human computer interaction"
     sims = match_group(inputs, groups, min_threshold)
 
     return Response(json.dumps(sims), mimetype='application/json')
