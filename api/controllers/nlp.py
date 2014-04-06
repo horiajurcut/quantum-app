@@ -86,8 +86,9 @@ def match_group(input, groups, min_threshold):
     
     print(group_questions)
 
+    print(match_similar(input, group_questions))
 
-    groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
+    # groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
     for group_id, similarity in groups:
         if similarity > min_threshold:
