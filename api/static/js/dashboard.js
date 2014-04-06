@@ -90,7 +90,7 @@ function polling() {
 			$('.questions-list tbody tr').on('click', showQuestionsModal);
         },
         dataType: "json",
-        complete: setTimeout(function() { polling() }, 3000),
+        complete: setTimeout(function() { polling() }, 5000),
         timeout: 2000
     })
 }
