@@ -57,6 +57,9 @@ function polling() {
             // Update page
             $('.questions-overview .content .value').text(data.questionsNumber);
 			$('.users-overview .content .value').text(data.usersOverview);
+			$('.users-overview .content .value').text('+' + data.totalPositive);
+			$('.users-overview .content .value').text(data.totalNeutral);
+			$('.users-overview .content .value').text('-' + data.totalNegative);
 			$('.questions-list tbody').html('');
 
 			jQuery.each(data.unansweredQuestions, function(index, value) {
