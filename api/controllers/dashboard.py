@@ -70,7 +70,7 @@ def dashboard_publish(event_id):
     }
     params = urllib.urlencode(params)
 
-    data = urllib.urlopen('https://graph.facebook.com/%s/feed?%s' % (page.page_id, params))
+    data = json.loads(urllib.urlopen('https://graph.facebook.com/%s/feed?%s' % (page.page_id, params)).read())
 
     return data
 
