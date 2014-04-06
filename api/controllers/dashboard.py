@@ -34,6 +34,26 @@ def dashboard_event(event_id):
     return render_template('dashboard.html')
 
 
+@app.route('/dashboard/event/<event_id>/retrieve')
+def dashboard_retrieve(event_id):
+    event = db.session.query(Event).filter(
+        Event.id == event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
+    params = {
+        'access_token': page.token
+    }
+    params = urllib.urlencode(params)
+
+    return Response(json.dumps({
+        'status': 'ok'
+    }), mimetype='application/json')
+
+
 @app.route('/dashboard/event/<event_id>/delete')
 def dashboard_delete(event_id):
     event = db.session.query(Event).filter(
