@@ -62,8 +62,12 @@ def match_similar(inputs, questions):
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
 
+    print dictionary
+
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
+
+    print corpus
 
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
@@ -101,7 +105,7 @@ def nlp_similar():
     groups = {
         '1': {
             'id': 1,
-            'content': 'Cars are awesome.',
+            'content': 'Cars are awesome',
         },
         '2': {
             'id': 2,
