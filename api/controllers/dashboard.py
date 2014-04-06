@@ -95,6 +95,22 @@ def dashboard_retrieve(event_id):
                 db.session.add(g)
                 db.session.commit()
 
+                # Get Sentiment
+                params = {
+                    'apikey':     '2ccd6f653c1e4253b6ac5ee0dadb284bde58331e',
+                    'text':       new_question['question'],
+                    'outputMode': 'json'
+                }
+                params = urllib.urlencode(params)
+
+                sentiment = json.loads(
+                    urllib.urlopen('http://access.alchemyapi.com/calls/text/TextGetTextSentiment?%s' % params).read()
+                )
+
+                return Response(json.dumps({
+                    'status': sentiment
+                }), mimetype='application/json')
+
             new_question['group_id'] = g.id
 
             q = Question(**new_question)
