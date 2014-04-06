@@ -15,6 +15,11 @@ import datetime
 
 @app.route('/')
 def login():
+    return render_template('landing.html')
+
+
+@app.route('/auth')
+def login():
     return render_template('login.html')
 
 
