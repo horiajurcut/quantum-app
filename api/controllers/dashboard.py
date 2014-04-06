@@ -276,7 +276,7 @@ def dashboard_publish(event_id):
     params = urllib.urlencode(params)
 
     data = json.loads(
-        urllib.urlopen('https://graph.facebook.com/' + page.page_id + '/feed?%s' % params).read()
+        urllib.urlopen('https://graph.facebook.com/' + str(page.page_id) + '/feed?%s' % params).read()
     )
 
     if 'id' in data:
@@ -284,7 +284,7 @@ def dashboard_publish(event_id):
         event.status = 1
         db.session.commit()
 
-    return redirect('/dashboard/event/' + event.id)
+    return redirect('/dashboard/event/%s' % event.id)
 
 
 @app.route('/dashboard/new', methods=['POST'])
