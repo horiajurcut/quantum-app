@@ -84,6 +84,9 @@ def match_group(inputs, groups, min_threshold):
     for group in groups:
         group_questions.append(group.question)
 
+    with open('/tmp/er.log', 'w') as f:
+        f.write(groups)
+
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
 
     for group_id, similarity in group_similarity:
