@@ -95,7 +95,7 @@ def dashboard_retrieve(event_id):
                 # Get Sentiment
                 params = {
                     'apikey':     '2ccd6f653c1e4253b6ac5ee0dadb284bde58331e',
-                    'text':       'Bine ca esti tu destept!',
+                    'text':       new_question['question'],
                     'outputMode': 'json'
                 }
                 params = urllib.urlencode(params)
@@ -103,10 +103,6 @@ def dashboard_retrieve(event_id):
                 sentiment = json.loads(
                     urllib.urlopen('http://access.alchemyapi.com/calls/text/TextGetTextSentiment?%s' % params).read()
                 )
-
-                return Response(json.dumps({
-                    'status': sentiment
-                }), mimetype='application/json')
 
                 if 'docSentiment' in sentiment and 'type' in sentiment['docSentiment']:
                     if sentiment['docSentiment']['type']:
