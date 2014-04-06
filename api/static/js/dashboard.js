@@ -95,6 +95,7 @@ function polling() {
 	$('.questions-overview .content .value').text(data.questionsNumber);
 	$('.users-overview .content .value').text(data.usersOverview);
 	$('.questions-list tbody').html('');
+	console.log('a');
 	jQuery.each(data.unansweredQuestions, function(index, value) {
 
 		var sentiment = 'green';
