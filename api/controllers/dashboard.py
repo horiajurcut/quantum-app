@@ -65,7 +65,9 @@ def dashboard_publish(event_id):
         'to':           page.id,
         'message':      'This is an awesome post. Deal with it!'
     }
+    print params
     params = urllib.urlencode(params)
+    print 'ENC: ' + params
     req = urllib2.Request('https://graph.facebook.com/%s/feed' % page.id, params)
     urllib2.urlopen(req)
 
