@@ -8,7 +8,7 @@ function showQuestionsModal() {
 
 	$('html, body').css({
 	    'overflow': 'hidden',
-	    'height': '100%'
+	    'height': '99%'
 	});
 
 	$modalBackground.on('click', closeQuestionsModal);
