@@ -80,13 +80,17 @@ def dashboard_retrieve(event_id):
                 Group.event_id == event.id
             ).all()
 
-            return Response(json.dumps({
-                'status': groups
-            }), mimetype='application/json')
+            gr = []
+            for group in groups:
+                gr.append({
+                    'id': group.id,
+                    'question': group.question,
+                    'similarity': 0
+                })
 
             g = None
-            if len(groups):
-                g = match_group(new_question['question'], groups, 0.4)
+            if len(gr):
+                g = match_group(new_question['question'], gr, 0.4)
 
             if g is None:
                 g = {
