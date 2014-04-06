@@ -110,6 +110,4 @@ function polling() {
 $(document).ready(function() {
 	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
-
-	
-});#
+});
