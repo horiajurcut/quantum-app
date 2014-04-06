@@ -68,8 +68,8 @@ def match_similar(inputs, questions):
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
 
-    # # Define LSI space
-    # lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
+    # Define LSI space
+    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
 
     # # Get similarity of teh doc vs documents
     # vector = dictionary.doc2bow(inputs.lower().split())
