@@ -62,10 +62,14 @@ def dashboard_new():
     new_event = {
         'page_id': page.id,
         'title': form['session-title'],
-        'message': 'This is a random message',
-        'start_date': datetime.datetime.now(),
-        'end_date': datetime.datetime.now()
+        'message': 'This is a random message'
     }
+
+    if form['session-start-date']:
+        new_event['start_date'] = datetime.datetime.strptime(form['session-start-date'])
+
+    if form['session-end-date']:
+        new_event['end_date'] = datetime.datetime.strptime(form['session-end-date'])
 
     db_event = Event(**new_event)
 

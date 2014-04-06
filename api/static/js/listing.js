@@ -13,12 +13,17 @@ function showCreateSessionModal() {
 	$modal.html(Mustache.to_html(template, null));
 	$('.modal-close-button').on('click', closeCreateSessionModal);
 	$('.cancel-create-session').on('click', closeCreateSessionModal);
-	$('.submit-create-session').on('click', function() {
-		$('.new-event').submit();
-	});
+	$('.submit-create-session').on('click', submitNewEvent);
 	$('.date-wrapper input').datetimepicker();
 
 	return false;
+}
+
+function submitNewEvent() {
+	$('#session-start-date').val($('#start-date').val());
+	$('#session-start-date').val($('#start-date').val());
+
+	$('.new-event').submit();
 }
 
 function closeCreateSessionModal() {
