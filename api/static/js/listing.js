@@ -21,7 +21,7 @@ function showCreateSessionModal() {
 
 function submitNewEvent() {
 	$('#session-start-date').val($('#start-date').val());
-	$('#session-end-date').val($('#start-date').val());
+	$('#session-end-date').val($('#end-date').val());
 
 	$('.new-event').submit();
 }

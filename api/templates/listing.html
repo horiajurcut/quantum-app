@@ -39,7 +39,7 @@
                         <span class="session">
                             <span class="session-title">{{ event.title }}</span>
                             <span class="timeframe">
-                                <span class="time-icon"></span>05 April 21:00 - 22:00
+                                <span class="time-icon"></span>{{ event.start_date|strftime('%d %B %H:%m') }} - {{ event.end_date|strftime('%H:%m') }}
                             </span>
                             <a href="/dashboard/event/{{ event.id }}/delete" class="delete-session"></a>
                         </span>
