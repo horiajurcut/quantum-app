@@ -36,6 +36,7 @@ function showQuestionsModal() {
 			        },
 				    dataType: "json",
 		   		});
+		   		$('.questions-list tbody tr[data-group-id="' + groupId + '"]').remove(500);
 		   		closeQuestionsModal();
 			});
     	},
