@@ -51,23 +51,11 @@ def npl_rank_keywords():
         'accounts': ranked
     }), mimetype='application/json')
 
-@app.route('/nlp/similar')
-def nlp_similar():
-    questions = { 
-        '1' : "Human machine interface for lab abc computer applications",
-        '2' : "A survey of user opinion of computer system response time",
-        '3' : "The EPS user interface management system",
-        '4' : "System and human system engineering testing of EPS",
-        '5' : "Relation of user perceived response time to error measurement",
-        '6' : "The generation of random binary unordered trees",
-        '7' : "The intersection graph of paths in trees",
-        '8' : "Graph minors IV Widths of trees and well quasi ordering",
-        '9': "Graph minors A survey"
-    }
+def match_similar(input, questions):
 
     # remove common words and tokenize
     stoplist = set('for a of the and to in by from on with as a'.split())
-    texts = [[word for word in question.lower().split() if word not in stoplist] for id, question in questions.items()]
+    texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
     # remove words that appear only once
     all_tokens = sum(texts, [])
@@ -81,14 +69,106 @@ def nlp_similar():
     corpus = [dictionary.doc2bow(text) for text in texts]
 
     # Define LSI space
-    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
+    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
 
     # Get similarity of teh doc vs documents
-    doc = "Human computer interaction"
-    vector = dictionary.doc2bow(doc.lower().split())
-    vector_lsi = lsi[vector] # convert the query to LSI space
+    vector = dictionary.doc2bow(input.lower().split())
+    vector_lsi = lsi[vector]
 
-    index = similarities.MatrixSimilarity(lsi[corpus]) # transform corpus to LSI space and index it
-    sims = index[vector_lsi] # perform a similarity query against the corpus
+    index = similarities.MatrixSimilarity(lsi[corpus])
+    return index[vector_lsi]
+
+def match_group(input, groups):
+
+    group_questions = []
+    for key, group in groups.items()
+        group_questions.append(group.content)
+
+    groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
+
+    group_id, similarity = groups[0]
+    return groups[groups_id]
+    
+
+@app.route('/nlp/similar')
+def nlp_similar():
+    groups = {
+        '1': {
+            'id': 1,
+            'content': 'Will the show continue?',
+            'low': 1,
+            'low_value': 0.9,
+            'high': 2,
+            'high_value': 9.1
+        },
+        '2': {
+            'id': 2,
+            'content': 'Do you like TV?',
+            'low':3,
+            'low_value': 0.6,
+            'high': 4,
+            'high_value': 7.7
+        }
+    }
+
+    questions = { 
+        '1': {
+            'id': 1,
+            'question': "Human machine interface for lab abc computer applications",
+            'similarity': 0.9,
+            'group_id': 1
+        },
+        '2': {
+            'id': 2,
+            'question': "A survey of user opinion of computer system response time",
+            'similarity': 9.1,
+            'group_id': 1
+        },
+        '3': {
+            'id': 3,
+            'question': "The EPS user interface management system",
+            'similarity': 0.6,
+            'group_id': 2
+        },
+        '4': {
+            'id': 4,
+            'question': "System and human system engineering testing of EPS",
+            'similarity': 7.7,
+            'group_id': 2
+        },
+        '5': {
+            'id': 5,
+            'question': "Relation of user perceived response time to error measurement",
+            'similarity': 8.1,
+            'group_id': 0
+        },
+        '6': {
+            'id': 6,
+            'question': "The generation of random binary unordered trees",
+            'similarity': 7.2,
+            'group_id': 1
+        },
+        '7': {
+            'id': 7,
+            'question': "The intersection graph of paths in trees",
+            'similarity': 1.6,
+            'group_id': 2
+        },
+        '8': {
+            'id': 8,
+            'question': "Graph minors IV Widths of trees and well quasi ordering",
+            'similarity': 2.3,
+            'group_id': 0
+        },
+        '9': {
+            'id': 6,
+            'question': "Graph minors A survey",
+            'similarity': 3.1
+            'group_id': 1
+        }
+    }
+
+    input = "Human computer interaction"
+    match_group(input, groups)
 
     return Response(json.dumps(sims), mimetype='application/json')
