@@ -120,7 +120,10 @@ def dashboard_page_token(page_id, access_token):
         db_page = Page(**fb_page)
 
         db.session.add(db_page)
-        db.session.commit()
+    else:
+        db_page.token = access_token
+
+    db.session.commit()
 
     return redirect('/dashboard/page/%s' % page_id)
 
