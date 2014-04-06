@@ -62,7 +62,8 @@ def dashboard_retrieve(event_id):
     for question in questions['data']:
         new_question = {
             'fb_id':    question['id'],
-            'question': question['message']
+            'question': question['message'],
+            'event_id': event.id
         }
 
         db_q = db.session.query(Question).filter(
