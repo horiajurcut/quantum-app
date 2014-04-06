@@ -94,7 +94,7 @@ def dashboard_reply(group_id):
         }
         params = urllib.urlencode(params)
 
-        data = json.loads(
+        json.loads(
             urllib.urlopen('https://graph.facebook.com/' + q.fb_id + '/comments?%s' % params).read()
         )
 
