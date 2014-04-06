@@ -34,11 +34,9 @@ function showQuestionsModal() {
 			        data: {
 			        	message: $('#reply-composer').val()	
 			        },
-			        success: function(data){
-						closeQuestionsModal();
-			        },
 				    dataType: "json",
 		   		});
+		   		closeQuestionsModal();
 			});
     	},
 	    dataType: "json",
