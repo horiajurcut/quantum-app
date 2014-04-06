@@ -59,13 +59,22 @@ function polling() {
 			$('.users-overview .content .value').text(data.usersOverview);
 			$('.questions-list tbody').html('');
 
+			data.unansweredQuestions.sort(function(a,b){return b.frequency-a.frequency});
+
 			jQuery.each(data.unansweredQuestions, function(index, value) {
 
-				var sentiment = 'grey';
-				if(value.sentiment === 'positive')
+				if(value.sentiment === 'positive') {
+					data.totalPositive++;
 					sentiment = 'green';
-				if(value.sentiment === 'negative')
-					sentiment = 'red';
+				} else {
+					if(value.sentiment === 'negative') {
+						data.totalNegative++;
+						sentiment = 'red';
+					} else {
+						data.totalNeutral++;
+						sentiment = 'grey';
+					}
+				}
 
 				$('.questions-list tbody').append('<tr>\
 					<td class="sentiment ' + sentiment + '"></td>\
@@ -74,10 +83,14 @@ function polling() {
 		        </tr>');
 			});
 
+			$('.positive').text('+' + data.totalPositive);
+			$('.neutral').text(data.totalNeutral);
+			$('.negative').text('-' + data.totalNegative);
+
 			$('.questions-list tbody tr').on('click', showQuestionsModal);
         },
         dataType: "json",
-        complete: setTimeout(function() { polling() }, 3000),
+        complete: setTimeout(function() { polling() }, 5000),
         timeout: 2000
     })
 }
