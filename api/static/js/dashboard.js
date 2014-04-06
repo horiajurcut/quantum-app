@@ -47,7 +47,7 @@ function closeQuestionsModal() {
 
 function polling() {
 
-	var eventId = parseInt($('body').data('event-id'));
+	var eventId = parseInt($('body').attr('data-event-id'), 10);
 
     $.ajax({
         url: "/dashboard/event/" + eventId + "/polling",
