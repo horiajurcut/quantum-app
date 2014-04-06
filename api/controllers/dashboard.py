@@ -39,7 +39,12 @@ def dashboard_new():
 
     page_id = form['session-page']
 
+    page = db.session.query(Page).filter(
+        page_id == page_id
+    ).first()
+
     new_event = {
+        'page_id': page.id
         'title': form['session-title'],
         'message': 'This is a random message',
         'start_date': datetime.datetime.now(),
