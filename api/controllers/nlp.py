@@ -106,11 +106,15 @@ def nlp_similar():
     groups = {
         '1': {
             'id': 1,
-            'content': 'The EPS user interface management system',
+            'content': 'The EPS user interface management system'
         },
         '2': {
             'id': 2,
-            'content': 'Human machine interface for lab abc computer applications',
+            'content': 'Human machine interface for lab abc computer applications'
+        },
+        '3': {
+            'id': 3,
+            'content': 'System and human system engineering testing of EPS'
         }
     }
 
@@ -171,7 +175,7 @@ def nlp_similar():
         }
     }
 
-    inputs = "Human computer interaction"
+    inputs = "I like watching television"
     sims = match_group(inputs, groups, min_threshold)
 
     return Response(json.dumps(sims), mimetype='application/json')
