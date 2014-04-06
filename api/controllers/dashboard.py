@@ -45,7 +45,7 @@ def dashboard_event(event_id):
         Page.id == event.page_id
     ).first()
 
-    return render_template('dashboard.html', page_id=page.page_id, event_id=event_id)
+    return render_template('dashboard.html', page_id=page.page_id, event=event)
 
 
 @app.route('/dashboard/event/<event_id>/retrieve')
