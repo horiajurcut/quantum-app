@@ -34,16 +34,12 @@ function showQuestionsModal() {
 			        data: {
 			        	message: $('#reply-composer').val()	
 			        },
-			        success: function(data){
-						closeQuestionsModal();
-			        },
 				    dataType: "json",
-			    	timeout: 2000
 		   		});
+		   		closeQuestionsModal();
 			});
     	},
 	    dataType: "json",
-    	timeout: 2000
     });
 
 	return false;
