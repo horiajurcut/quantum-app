@@ -56,19 +56,21 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
-    # # remove words that appear only once
-    # all_tokens = sum(texts, [])
-    # tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-    # texts = [[word for word in text if word not in tokens_once] for text in texts]
+    # remove words that appear only once
+    all_tokens = sum(texts, [])
+    tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
+    texts = [[word for word in text if word not in tokens_once] for text in texts]
 
-    # # Create dictionary
-    # dictionary = corpora.Dictionary(texts)
+    # Create dictionary
+    dictionary = corpora.Dictionary(texts)
 
-    # # Define corpus
-    # corpus = [dictionary.doc2bow(text) for text in texts]
+    print texts
 
-    # # Define LSI space
-    # lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
+    # Define corpus
+    corpus = [dictionary.doc2bow(text) for text in texts]
+
+    # Define LSI space
+    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
     # # Get similarity of teh doc vs documents
     # vector = dictionary.doc2bow(inputs.lower().split())
