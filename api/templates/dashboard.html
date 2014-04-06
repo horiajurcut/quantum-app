@@ -54,7 +54,7 @@
                         <div class="circle"></div>
                         <div class="content">
                             <div class="title">Vibe</div>
-                            <div class="value"><span class="text-green positive">+10</span> / <span class="neutral">1</span> / <span class="text-red negative"> -1</span></div>
+                            <div class="value"><span class="text-green positive">+0</span> / <span class="neutral">0</span> / <span class="text-red negative"> -0</span></div>
                         </div>
                     </div>
                 </div>
@@ -91,13 +91,13 @@
                     {{ question }}
                     <div class="asked-by">
                         ASKED BY:
-                        <ul>{{#askedby}}
+                        <ul>{{#users}}
                             <li>
-                                <a href="http://facebook.com/{{user_id}}" target="_blank">
-                                    <img src="{{avatar}}" alt="{{full_name}}" />
+                                <a href="{{ profile }}" target="_blank">
+                                    <img src="{{avatar}}" />
                                 </a>
                             </li>
-                        {{/askedby}}</ul>
+                        {{/users}}</ul>
                     </div>
                 </section>
                 <section class="modal-question-composer">
