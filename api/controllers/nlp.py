@@ -77,7 +77,7 @@ def match_similar(inputs, questions):
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
 
-    raise Exception(lsi)
+    raise Exception(lsi[corpus])
 
     return sims
 
