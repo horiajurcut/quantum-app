@@ -67,6 +67,7 @@ def dashboard_retrieve(event_id):
     for question in questions['data']:
         new_question = {
             'fb_id':    question['id'],
+            'from':     question['from']['id'],
             'question': question['message'],
             'event_id': event.id
         }
