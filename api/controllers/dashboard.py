@@ -40,6 +40,12 @@ def dashboard_retrieve(event_id):
         Event.id == event_id
     ).first()
 
+    if not event.fb_post_id:
+        return Response(json.dumps({
+            'questions': []
+        }), mimetype='application/json')
+
+
     page = db.session.query(Page).filter(
         Page.id == event.page_id
     ).first()
@@ -49,7 +55,7 @@ def dashboard_retrieve(event_id):
     }
     params = urllib.urlencode(params)
     questions = json.loads(
-        urllib('https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params).read()
+        urllib.urlopen('https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params).read()
     )
 
     return Response(json.dumps({
