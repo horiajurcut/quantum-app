@@ -56,6 +56,9 @@ def match_similar(inputs, questions):
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
 
+    raise Exception(texts)
+
+
     # remove words that appear only once
     all_tokens = sum(texts, [])
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
@@ -64,7 +67,7 @@ def match_similar(inputs, questions):
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
 
-    raise Exception(questions)
+
 
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
