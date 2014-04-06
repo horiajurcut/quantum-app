@@ -51,11 +51,11 @@
 
         <script id="modal-new-session" type="text/template">
             <form class="new-event" action="/dashboard/new" method="POST">
-                <input type="hidden" id="session-page" value="{{ page_id }}" />
+                <input type="hidden" name="session-page" id="session-page" value="{{ page_id }}" />
                 <div class="modal-content">
                     <a href="#" class="modal-close-button"></a>
                     <section class="modal-session-content">
-                        <input type="text" id="session-title" placeholder="Add Title" />
+                        <input type="text" name="session-title" id="session-title" placeholder="Add Title" />
                         <div class="date-wrapper start">
                             <span>Start Date</span>
                             <input type="text" id="start-date" placeholder="Select Date" />
