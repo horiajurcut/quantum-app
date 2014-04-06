@@ -6,9 +6,9 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
-	$('html, body').css({
+	$('html').css({
 	    'overflow': 'hidden',
-	    'height': '99%'
+	    'height': '100%'
 	});
 
 	$modalBackground.on('click', closeQuestionsModal);
