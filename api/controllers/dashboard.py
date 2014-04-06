@@ -11,6 +11,8 @@ from api.models.page import Page
 from api.models.event import Event
 from api.models.question import Question
 
+from api.controllers.nlp import *
+
 import urllib
 import requests
 import json
@@ -71,6 +73,22 @@ def dashboard_retrieve(event_id):
         ).first()
 
         if not db_q:
+            groups = db.session.query(Group).filter(
+                Group.event_id == event.id
+            ).all()
+
+            g = match_group(new_question['question'], groups, 0.4)
+
+            if g is None:
+                g = {
+                    'event_id': event.id,
+                    'question': new_question['question']
+                }
+
+                g = Group(**g)
+
+            new_question['group_id'] = g.id
+
             q = Question(**new_question)
 
             db.session.add(q)

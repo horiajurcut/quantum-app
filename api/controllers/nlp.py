@@ -52,7 +52,6 @@ def npl_rank_keywords():
     }), mimetype='application/json')
 
 def match_similar(inputs, questions):
-
     # remove common words and tokenize
     stoplist = set('for a of the and to in'.split())
     texts = [[word for word in question.lower().split() if word not in stoplist] for question in questions]
@@ -82,100 +81,14 @@ def match_similar(inputs, questions):
 def match_group(inputs, groups, min_threshold):
 
     group_questions = []
-    for key, group in groups.items():
-        group_questions.append(group['content'])
-    
+    for group in groups:
+        group_questions.append(group.question)
+
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
 
     for group_id, similarity in group_similarity:
         if similarity > min_threshold:
-            return groups[str(group_id)]
+            return groups[group_id]
 
     # Create new group
-    print('New Group created');
-    
-
-@app.route('/nlp/similar')
-def nlp_similar():
-    min_threshold = 0.4;
-
-    groups = {
-        '1': {
-            'id': 1,
-            'content': 'The EPS user interface management system'
-        },
-        '2': {
-            'id': 2,
-            'content': 'Human machine interface for lab abc computer applications'
-        },
-        '3': {
-            'id': 3,
-            'content': 'System and human system engineering testing of EPS'
-        },
-        '4': {
-            'id': 4,
-            'content': 'A survey of user opinion of computer system response time'
-        }
-    }
-
-    questions = { 
-        '1': {
-            'id': 1,
-            'question': "Human machine interface for lab abc computer applications",
-            'similarity': 0.9,
-            'group_id': 1
-        },
-        '2': {
-            'id': 2,
-            'question': "A survey of user opinion of computer system response time",
-            'similarity': 9.1,
-            'group_id': 1
-        },
-        '3': {
-            'id': 3,
-            'question': "The EPS user interface management system",
-            'similarity': 0.6,
-            'group_id': 2
-        },
-        '4': {
-            'id': 4,
-            'question': "System and human system engineering testing of EPS",
-            'similarity': 7.7,
-            'group_id': 2
-        },
-        '5': {
-            'id': 5,
-            'question': "Relation of user perceived response time to error measurement",
-            'similarity': 8.1,
-            'group_id': 0
-        },
-        '6': {
-            'id': 6,
-            'question': "The generation of random binary unordered trees",
-            'similarity': 7.2,
-            'group_id': 1
-        },
-        '7': {
-            'id': 7,
-            'question': "The intersection graph of paths in trees",
-            'similarity': 1.6,
-            'group_id': 2
-        },
-        '8': {
-            'id': 8,
-            'question': "Graph minors IV Widths of trees and well quasi ordering",
-            'similarity': 2.3,
-            'group_id': 0
-        },
-        '9': {
-            'id': 6,
-            'question': "Graph minors A survey",
-            'similarity': 3.1,
-            'group_id': 1
-        }
-    }
-
-    inputs = "Human computer interaction"
-    sims = match_group(inputs, groups, min_threshold)
-
-    return Response(json.dumps(sims), mimetype='application/json')
+    return None
