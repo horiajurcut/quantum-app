@@ -62,6 +62,7 @@ def dashboard_publish(event_id):
 
     params = {
         'access_token': page.token,
+        'to':           page.page_id,
         'message':      'This is an awesome post. Deal with it!',
         'format':       'json',
         'suppress_http_code': 1,
