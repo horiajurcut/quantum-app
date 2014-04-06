@@ -65,7 +65,7 @@ def dashboard_publish(event_id):
         'message':      'This is an awesome post. Deal with it!'
     }
     params = urllib.urlencode(params)
-    urllib.urlopen('https://graph.facebook.com/me/%s/feed' % page.id, params)
+    urllib.urlopen('https://graph.facebook.com/%s/feed' % page.id, params)
 
     return redirect('/dashboard/page/%s' % page.page_id)
 
