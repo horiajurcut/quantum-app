@@ -59,8 +59,6 @@ def dashboard_retrieve(event_id):
         urllib.urlopen('https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params).read()
     )
 
-    return 'https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params
-
     for question in questions['data']:
         new_question = {
             'fb_id':    question['id'],
