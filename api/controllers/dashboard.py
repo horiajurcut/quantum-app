@@ -63,6 +63,8 @@ def dashboard_publish(event_id):
     params = {
         'access_token': page.token,
         'message':      'This is an awesome post. Deal with it!',
+        'format':       'json',
+        'suppress_http_code': 1,
         'method':       'post'
     }
     data = requests.get('https://graph.facebook.com/%s/feed' % page.id, data=params)
