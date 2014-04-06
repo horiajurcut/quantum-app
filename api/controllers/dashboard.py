@@ -48,9 +48,12 @@ def dashboard_retrieve(event_id):
         'access_token': page.token
     }
     params = urllib.urlencode(params)
+    questions = json.loads(
+        urllib('https://graph.facebook.com/' + event.fb_post_id + '/comments?%s' % params).read()
+    )
 
     return Response(json.dumps({
-        'status': 'ok'
+        'status': questions
     }), mimetype='application/json')
 
 
