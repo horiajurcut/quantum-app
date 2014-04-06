@@ -79,10 +79,12 @@ def match_similar(inputs, questions):
     return sims
 
 def match_group(inputs, groups, min_threshold):
-
     group_questions = []
     for group in groups:
         group_questions.append(group.question)
+
+    with open('/tmp/a.l', 'w') as f:
+        f.write(group_questions)
 
     group_similarity = sorted(enumerate(match_similar(inputs, group_questions)), key=lambda item: -item[1])
 
