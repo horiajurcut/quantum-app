@@ -64,12 +64,8 @@ def match_similar(inputs, questions):
     # Create dictionary
     dictionary = corpora.Dictionary(texts)
 
-
-
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
-
-    raise Exception(str(corpus) + str(dictionary))
 
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
@@ -77,6 +73,8 @@ def match_similar(inputs, questions):
     # Get similarity of teh doc vs documents
     vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
+
+    raise Exception(inputs)
 
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
