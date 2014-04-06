@@ -18,7 +18,7 @@ import datetime
 @app.route('/dashboard/page/<page_id>')
 def dashboard_page(page_id):
     page = db.session.query(Page).filter(
-        page_id == page_id
+        Page.page_id == page_id
     ).first()
 
     events = db.session.query(Event).filter(
@@ -56,7 +56,7 @@ def dashboard_new():
     page_id = form['session-page']
 
     page = db.session.query(Page).filter(
-        page_id == page_id
+        Page.page_id == page_id
     ).first()
 
     new_event = {
