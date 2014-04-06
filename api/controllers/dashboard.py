@@ -11,7 +11,7 @@ from api.models.page import Page
 from api.models.event import Event
 
 import urllib
-import urllib2
+import requests
 import json
 import datetime
 
@@ -65,11 +65,7 @@ def dashboard_publish(event_id):
         'to':           page.id,
         'message':      'This is an awesome post. Deal with it!'
     }
-    print params
-    params = urllib.urlencode(params)
-    print 'ENC: ' + params
-    req = urllib2.Request('https://graph.facebook.com/%s/feed' % page.id, params)
-    urllib2.urlopen(req)
+    data = requests.post('https://graph.facebook.com/%s/feed' % page.id, data=params)
 
     return redirect('/dashboard/page/%s' % page.page_id)
 
