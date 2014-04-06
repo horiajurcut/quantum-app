@@ -62,22 +62,22 @@ def match_similar(inputs, questions):
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
     texts = [[word for word in text if word not in tokens_once] for text in texts]
 
-    # Create dictionary
-    dictionary = corpora.Dictionary(texts)
+    # # Create dictionary
+    # dictionary = corpora.Dictionary(texts)
 
-    # Define corpus
-    corpus = [dictionary.doc2bow(text) for text in texts]
+    # # Define corpus
+    # corpus = [dictionary.doc2bow(text) for text in texts]
 
-    # Define LSI space
-    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
+    # # Define LSI space
+    # lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
 
-    # Get similarity of teh doc vs documents
-    vector = dictionary.doc2bow(inputs.lower().split())
-    vector_lsi = lsi[vector]
+    # # Get similarity of teh doc vs documents
+    # vector = dictionary.doc2bow(inputs.lower().split())
+    # vector_lsi = lsi[vector]
 
-    index = similarities.MatrixSimilarity(lsi[corpus])
-    sims = index[vector_lsi]
-    return sims
+    # index = similarities.MatrixSimilarity(lsi[corpus])
+    # sims = index[vector_lsi]
+    # return sims
 
 def match_group(inputs, groups, min_threshold):
 
