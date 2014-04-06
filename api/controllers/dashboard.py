@@ -37,7 +37,15 @@ def dashboard_page(page_id):
 
 @app.route('/dashboard/event/<event_id>')
 def dashboard_event(event_id):
-    return render_template('dashboard.html')
+    event = db.session.query(Event).filter(
+        Event.id == event_id
+    ).first()
+
+    page = db.session.query(Page).filter(
+        Page.id == event.page_id
+    ).first()
+
+    return render_template('dashboard.html', page_id=page.page_id)
 
 
 @app.route('/dashboard/event/<event_id>/retrieve')

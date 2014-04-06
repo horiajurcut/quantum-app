@@ -46,57 +46,67 @@ function closeQuestionsModal() {
 }
 
 function polling() {
-    setTimeout(function() {
-        // $.ajax({
-        //     url: "/server/api/function",
-        //     type: "GET",
-        //     success: function(data) {
-        //         // Update page
-        //     },
-        //     dataType: "json",
-        //     complete: polling,
-        //     timeout: 2000
-        // })
 
-    	// Update stats
-    	data = {
-    		questionsNumber: 300,
-    		usersOverview: 100,
-    		unansweredQuestions: [
-    			{
-    				id: 1,
-    				frequency: 122,
-    				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-    				sentiment: 'positive'
-    			},
-    			{
-    				id: 2,
-    				frequency: 18,
-    				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-    				sentiment: 'positive'
-    			},
-    			{
-    				id: 3,
-    				frequency: 7,
-    				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-    				sentiment: 'negative'
-    			},
-    		],
-    		answeredQuestions: [
-    			{
-    				id: 1,
-    				frequency: 15,
-    				question: 'Tam tam?',
-    				answer: 'Yes.'
-    			}
-    		]
-    	}
-    	
-    	$('.questions-overview .content .value').text(data.questionsNumber);
-    	$('.users-overview .content .value').text(data.usersOverview);
-    	console.log('a')
+    // $.ajax({
+    //     url: "/server/api/function",
+    //     type: "GET",
+    //     success: function(data) {
+    //         // Update page
+    //     },
+    //     dataType: "json",
+    //     complete: setTimeout(function() {}, 1000),
+    //     timeout: 2000
+    // })
 
-    }, 5000);
+	// Update stats
+	data = {
+		questionsNumber: 300,
+		usersOverview: 100,
+		unansweredQuestions: [
+			{
+				id: 1,
+				frequency: 122,
+				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
+				sentiment: 'positive'
+			},
+			{
+				id: 2,
+				frequency: 18,
+				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
+				sentiment: 'positive'
+			},
+			{
+				id: 3,
+				frequency: 7,
+				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
+				sentiment: 'negative'
+			},
+		],
+		answeredQuestions: [
+			{
+				id: 1,
+				frequency: 15,
+				question: 'Tam tam?',
+				answer: 'Yes.'
+			}
+		]
+	}
+	
+	$('.questions-overview .content .value').text(data.questionsNumber);
+	$('.users-overview .content .value').text(data.usersOverview);
+	$('.questions-list tbody').html('');
+	jQuery.each(data.unansweredQuestions, function(index, value) {
+
+		var sentiment = 'green';
+		if(value.sentiment === 'negative')
+			sentiment = 'red';
+
+		$('.questions-list tbody').append('<tr>\
+			<td class="sentiment ' + sentiment + '"></td>\
+			<td class="question">' + value.question + '</td>\
+            <td class="frequency"><span>' + value.frequency + '</span></td>\
+        </tr>');
+	});
 }
 
 polling();
