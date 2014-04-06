@@ -91,7 +91,8 @@
 	background-color: #ec4d51;
 }
 
-.session-listing .session:hover .delete-session .start-session {
+.session-listing .session:hover .delete-session,
+.session-listing .session:hover .start-session {
 	display: block;
 }
 
