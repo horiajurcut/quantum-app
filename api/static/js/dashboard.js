@@ -75,50 +75,57 @@ function polling() {
 			$('.questions-list tbody').html('');
 
 			data.unansweredQuestions.sort(function(a,b){return b.frequency-a.frequency});
+			data.answeredQuestions.sort(function(a,b){return b.frequency-a.frequency});
 
-			jQuery.each(data.unansweredQuestions, function(index, value) {
+			if($('.tabs li.selected a[data-type="unanswered"]').length) {
 
-				if(value.sentiment === 'positive') {
-					data.totalPositive++;
-					sentiment = 'green';
-				} else {
-					if(value.sentiment === 'negative') {
-						data.totalNegative++;
-						sentiment = 'red';
+				jQuery.each(data.unansweredQuestions, function(index, value) {
+
+					if(value.sentiment === 'positive') {
+						data.totalPositive++;
+						sentiment = 'green';
 					} else {
-						data.totalNeutral++;
-						sentiment = 'grey';
+						if(value.sentiment === 'negative') {
+							data.totalNegative++;
+							sentiment = 'red';
+						} else {
+							data.totalNeutral++;
+							sentiment = 'grey';
+						}
 					}
-				}
 
-				$('.questions-list tbody').append('<tr data-type="unanswered" data-group-id="' + value.id + '">\
-					<td class="sentiment ' + sentiment + '"></td>\
-					<td class="question">' + value.question + '</td>\
-		            <td class="frequency"><span>' + value.frequency + '</span></td>\
-		        </tr>');
-			});
+					$('.questions-list tbody').append('<tr data-type="unanswered" data-group-id="' + value.id + '">\
+						<td class="sentiment ' + sentiment + '"></td>\
+						<td class="question">' + value.question + '</td>\
+			            <td class="frequency"><span>' + value.frequency + '</span></td>\
+			        </tr>');
+				});
+			} else {
+				
+				jQuery.each(data.answeredQuestions, function(index, value) {
 
-			jQuery.each(data.answeredQuestions, function(index, value) {
-
-				if(value.sentiment === 'positive') {
-					data.totalPositive++;
-					sentiment = 'green';
-				} else {
-					if(value.sentiment === 'negative') {
-						data.totalNegative++;
-						sentiment = 'red';
+					if(value.sentiment === 'positive') {
+						data.totalPositive++;
+						sentiment = 'green';
 					} else {
-						data.totalNeutral++;
-						sentiment = 'grey';
+						if(value.sentiment === 'negative') {
+							data.totalNegative++;
+							sentiment = 'red';
+						} else {
+							data.totalNeutral++;
+							sentiment = 'grey';
+						}
 					}
-				}
 
-				$('.questions-list tbody').append('<tr data-type="answered" data-group-id="' + value.id + '">\
-					<td class="sentiment ' + sentiment + '"></td>\
-					<td class="question">' + value.question + '</td>\
-		            <td class="frequency"><span>' + value.frequency + '</span></td>\
-		        </tr>');
-			});
+					$('.questions-list tbody').append('<tr data-type="answered" data-group-id="' + value.id + '">\
+						<td class="sentiment ' + sentiment + '"></td>\
+						<td class="question">' + value.question + '</td>\
+			            <td class="frequency"><span>' + value.frequency + '</span></td>\
+			        </tr>');
+				});
+			}
+
+
 
 			$('.positive').text('+' + data.totalPositive);
 			$('.neutral').text(data.totalNeutral);
