@@ -61,16 +61,18 @@ def dashboard_publish(event_id):
     ).first()
 
     params = {
-        'access_token': page.token,
-        'to':           page.page_id,
-        'message':      'This is an awesome post. Deal with it!',
-        'format':       'json',
+        'access_token':       page.token,
+        'to':                 page.page_id,
+        'message':            'This is an awesome post. Deal with it!',
+        'format':             'json',
         'suppress_http_code': 1,
-        'method':       'post'
+        'method':             'post'
     }
     params = urllib.urlencode(params)
 
-    data = json.loads(urllib.urlopen('https://graph.facebook.com/%s/feed?%s' % (page.page_id, params)).read())
+    data = json.loads(
+        urllib.urlopen('https://graph.facebook.com/629910253717225/feed?%s' % (page.page_id, params)).read()
+    )
 
     return redirect('/dashboard/page/%s' % page.page_id)
 
