@@ -11,6 +11,19 @@
 	background-size: 24px 24px;
 }
 
+
+.text-green {
+	color: #9cd261;
+}
+
+.text-red {
+	color: #ec5464;
+}
+
+.text-grey {
+	color: #ddd;
+}
+
 .session-listing {
 	list-style: none;
 	margin: 0;
