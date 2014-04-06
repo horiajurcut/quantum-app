@@ -18,7 +18,8 @@ import urllib
 import requests
 import json
 import datetime
-import gensim
+
+from gensim import corpora, models, similarities
 
 
 @app.route('/dashboard/page/<page_id>')
