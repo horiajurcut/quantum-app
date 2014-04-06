@@ -72,8 +72,6 @@ def dashboard_publish(event_id):
 
     data = json.loads(urllib.urlopen('https://graph.facebook.com/%s/feed?%s' % (page.page_id, params)).read())
 
-    return data
-
     return redirect('/dashboard/page/%s' % page.page_id)
 
 
