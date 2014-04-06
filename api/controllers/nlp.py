@@ -86,7 +86,7 @@ def match_group(inputs, groups, min_threshold):
     
     print group_questions
 
-    # print(match_similar(inputs, group_questions))
+    print match_similar(inputs, group_questions)
 
     # groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
