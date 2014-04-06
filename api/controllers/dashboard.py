@@ -78,7 +78,9 @@ def dashboard_retrieve(event_id):
                 Group.event_id == event.id
             ).all()
 
-            g = match_group(new_question['question'], groups, 0.4)
+            g = None
+            if len(groups):
+                g = match_group(new_question['question'], groups, 0.4)
 
             if g is None:
                 g = {
