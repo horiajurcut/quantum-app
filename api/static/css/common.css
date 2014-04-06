@@ -50,6 +50,7 @@ h2 {
 	vertical-align: middle;
 	margin-top: -3px;
 	margin-right: 5px;
+	filter: grayscale(100%);
 }
 
 .modal-background {
