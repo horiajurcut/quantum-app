@@ -105,7 +105,7 @@ def nlp_similar():
     groups = {
         '1': {
             'id': 1,
-            'content': 'Cars are awesome tv',
+            'content': 'Cars are awesome television',
         },
         '2': {
             'id': 2,
