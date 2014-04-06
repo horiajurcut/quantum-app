@@ -187,6 +187,21 @@ def dashboard_retrieve(event_id):
             db.session.add(q)
             db.session.commit()
 
+            # Reply to Facebook
+            if g.answer is not None:
+                params = {
+                    'access_token':       page.token,
+                    'message':            g.answer,
+                    'format':             'json',
+                    'suppress_http_code': 1,
+                    'method':             'post'
+                }
+                params = urllib.urlencode(params)
+
+                json.loads(
+                    urllib.urlopen('https://graph.facebook.com/' + str(new_question['fb_id']) + '/comments?%s' % params).read()
+                )
+
     return Response(json.dumps({
         'status': questions
     }), mimetype='application/json')
