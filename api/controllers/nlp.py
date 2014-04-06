@@ -74,10 +74,11 @@ def match_similar(inputs, questions):
     vector = dictionary.doc2bow(inputs.lower().split())
     vector_lsi = lsi[vector]
 
-    raise Exception(inputs)
-
     index = similarities.MatrixSimilarity(lsi[corpus])
     sims = index[vector_lsi]
+
+    raise Exception(index)
+
     return sims
 
 def match_group(inputs, groups, min_threshold):
