@@ -44,7 +44,7 @@ def dashboard_new():
     ).first()
 
     new_event = {
-        'page_id': page.id
+        'page_id': page.id,
         'title': form['session-title'],
         'message': 'This is a random message',
         'start_date': datetime.datetime.now(),
