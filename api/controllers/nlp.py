@@ -84,9 +84,9 @@ def match_group(inputs, groups, min_threshold):
     for key, group in groups.items():
         group_questions.append(group['content'])
     
-    print(group_questions)
+    print group_questions
 
-    print(match_similar(inputs, group_questions))
+    # print(match_similar(inputs, group_questions))
 
     # groups = sorted(enumerate(match_similar(input, group_questions)), key=lambda item: -item[1])
 
@@ -95,7 +95,7 @@ def match_group(inputs, groups, min_threshold):
     #         return groups[groups_id]
 
     # Create new group
-    print('New Group created');
+    # print('New Group created');
     
 
 @app.route('/nlp/similar')
