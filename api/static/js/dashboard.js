@@ -6,7 +6,10 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
-	$('body').css("overflow", "hidden");
+	$('html, body').css({
+	    'overflow': 'hidden',
+	    'height': '100%'
+	});
 
 	$modalBackground.on('click', closeQuestionsModal);
 
@@ -54,6 +57,11 @@ function closeQuestionsModal() {
 	var $modal = $('.modal');
 	$modal.animate({ marginTop: '0', top: '100%' }, function() { $modal.remove() });
 	$modalBackground.animate({ opacity: 0 }, function() { $modalBackground.remove() });
+
+	$('html, body').css({
+	    'overflow': 'auto',
+	    'height': 'auto'
+	});
 
 	return false;
 }
