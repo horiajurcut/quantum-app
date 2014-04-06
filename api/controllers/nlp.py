@@ -68,6 +68,10 @@ def match_similar(inputs, questions):
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
 
+    print dictionary
+
+    print corpus
+
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
