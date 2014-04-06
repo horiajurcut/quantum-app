@@ -14,7 +14,7 @@ import json
 import datetime
 
 @app.route('/')
-def login():
+def landing():
     return render_template('landing.html')
 
 
