@@ -47,71 +47,41 @@ function closeQuestionsModal() {
 
 function polling() {
 
-    // $.ajax({
-    //     url: "/server/api/function",
-    //     type: "GET",
-    //     success: function(data) {
-    //         // Update page
-    //     },
-    //     dataType: "json",
-    //     complete: setTimeout(function() {}, 1000),
-    //     timeout: 2000
-    // })
+	var eventId = parseInt($('body').attr('data-event-id'), 10);
 
-	// Update stats
-	data = {
-		questionsNumber: 300,
-		usersOverview: 100,
-		unansweredQuestions: [
-			{
-				id: 1,
-				frequency: 122,
-				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-				sentiment: 'positive'
-			},
-			{
-				id: 2,
-				frequency: 18,
-				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-				sentiment: 'positive'
-			},
-			{
-				id: 3,
-				frequency: 7,
-				question: 'I love when actors actually have--and run--their own FB pages. You were already one of my favorite actors and seeing stuff like this only makes me love you more!',
-				sentiment: 'negative'
-			},
-		],
-		answeredQuestions: [
-			{
-				id: 1,
-				frequency: 15,
-				question: 'Tam tam?',
-				answer: 'Yes.'
-			}
-		]
-	}
-	
-	$('.questions-overview .content .value').text(data.questionsNumber);
-	$('.users-overview .content .value').text(data.usersOverview);
-	$('.questions-list tbody').html('');
-	console.log('a');
-	jQuery.each(data.unansweredQuestions, function(index, value) {
+    $.ajax({
+        url: "/dashboard/event/" + eventId + "/polling",
+        type: "GET",
+        success: function(data) {
 
-		var sentiment = 'green';
-		if(value.sentiment === 'negative')
-			sentiment = 'red';
+            // Update page
+            $('.questions-overview .content .value').text(data.questionsNumber);
+			$('.users-overview .content .value').text(data.usersOverview);
+			$('.questions-list tbody').html('');
 
-		$('.questions-list tbody').append('<tr>\
-			<td class="sentiment ' + sentiment + '"></td>\
-			<td class="question">' + value.question + '</td>\
-            <td class="frequency"><span>' + value.frequency + '</span></td>\
-        </tr>');
-	});
+			jQuery.each(data.unansweredQuestions, function(index, value) {
+
+				var sentiment = 'red';
+				if(value.sentiment === 'positive')
+					sentiment = 'green';
+
+				$('.questions-list tbody').append('<tr>\
+					<td class="sentiment ' + sentiment + '"></td>\
+					<td class="question">' + value.question + '</td>\
+		            <td class="frequency"><span>' + value.frequency + '</span></td>\
+		        </tr>');
+			});
+
+			$('.questions-list tbody tr').on('click', showQuestionsModal);
+        },
+        dataType: "json",
+        complete: setTimeout(function() { polling() }, 3000),
+        timeout: 2000
+    })
 }
 
-polling();
 
 $(document).ready(function() {
+	polling();
 	$('.questions-list tbody tr').on('click', showQuestionsModal);
 });
