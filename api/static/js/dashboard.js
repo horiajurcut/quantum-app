@@ -71,9 +71,11 @@ function polling() {
 		            <td class="frequency"><span>' + value.frequency + '</span></td>\
 		        </tr>');
 			});
+
+			$('.questions-list tbody tr').on('click', showQuestionsModal);
         },
         dataType: "json",
-        complete: setTimeout(function() { polling() }, 1000),
+        complete: setTimeout(function() { polling() }, 3000),
         timeout: 2000
     })
 }
