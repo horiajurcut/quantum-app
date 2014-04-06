@@ -284,7 +284,7 @@ def dashboard_publish(event_id):
         event.status = 1
         db.session.commit()
 
-    return redirect('/dashboard/events/%s' % event.id)
+    return redirect('/dashboard/event/' + event.id)
 
 
 @app.route('/dashboard/new', methods=['POST'])
