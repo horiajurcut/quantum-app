@@ -6,7 +6,8 @@ function showQuestionsModal() {
 		$('#reply-composer').focus();
 	});
 
-	$('html, body').css({
+	$('body').css({
+		'top', $('body').offset().top,
 	    'overflow': 'hidden',
 	    'height': '100%'
 	});
@@ -101,7 +102,7 @@ function polling() {
 			        </tr>');
 				});
 			} else {
-				
+
 				jQuery.each(data.answeredQuestions, function(index, value) {
 
 					if(value.sentiment === 'positive') {
