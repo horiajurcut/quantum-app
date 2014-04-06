@@ -21,7 +21,7 @@ class Group(db.Model):
     @property
     def serialize(self):
         q = db.session.query(Question).filter(
-            Question.group_id = self.id
+            Question.group_id == self.id
         ).count()
 
         return {
