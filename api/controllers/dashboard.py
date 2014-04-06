@@ -158,6 +158,8 @@ def dashboard_polling(event_id):
         Page.id == event.page_id
     ).first()
 
+    dashboard_retrieve(event_id)
+
     aGroups = db.session.query(Group).filter(
         Group.event_id == event_id
     ).filter(
