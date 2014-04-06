@@ -163,7 +163,7 @@ def nlp_similar():
         }
     }
 
-    inputs = "Human computer interaction"
+    inputs = "I like watching series"
     sims = match_group(inputs, groups, min_threshold)
 
     return Response(json.dumps(sims), mimetype='application/json')
