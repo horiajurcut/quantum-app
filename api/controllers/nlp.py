@@ -69,6 +69,8 @@ def match_similar(inputs, questions):
     # Define corpus
     corpus = [dictionary.doc2bow(text) for text in texts]
 
+    raise Exception(str(corpus) + str(dictionary))
+
     # Define LSI space
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2)
 
